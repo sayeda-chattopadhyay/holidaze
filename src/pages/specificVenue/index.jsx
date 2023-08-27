@@ -2,7 +2,7 @@
 
 const SpecificVenuePage = () => {
   return (
-    <div>SpecificVenue</div>
+    <div>I am SpecificVenue</div>
   )
 }
 
