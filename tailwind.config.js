@@ -10,7 +10,8 @@ export default {
           200: "#E0E0E0",
         },
         fontFamily: {
-          roboto: ["Roboto"],
+          heading: ["Source serif 4", "serif"],
+          paragraph: ["Roboto, sans-serif"],
         },
         backgroundImage: {
           "hero-pattern": "url('/src/assets/images/hero-image.png')",
