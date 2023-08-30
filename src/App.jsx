@@ -19,10 +19,10 @@ function App() {
   return (
     <>
       <Routes>
+        <Route path="/logIn" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
         <Route path="/" element={<BaseLayout />}>
           <Route index element={<HomePage />} />
-          <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/logIn" element={<LoginPage />} />
           <Route path="/venues" element={<VenuesPage />} />
           <Route path="/venues/:id" element={<SpecificVenuePage />} />
           <Route path="/profile" element={<ProfilePage />} />
