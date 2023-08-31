@@ -1,5 +1,5 @@
 import Banner from "../../components/banner/Banner";
-import Card from "../../components/cards/Card";
+// import Card from "../../components/cards/Card";
 import SearchBar from "../../components/search/SearchBar";
 import HostImage from "../../assets/images/become-host.jpg";
 
@@ -10,7 +10,7 @@ const HomePage = () => {
         <Banner />
         <h1>Find Your best destination</h1>
         <SearchBar />
-        <Card />
+        {/* <Card /> */}
         <section>
           <h2>Why must choose us</h2>
           <div>
