@@ -1,6 +1,7 @@
 import Banner from "../../components/banner/Banner";
 import Card from "../../components/cards/Card";
 import SearchBar from "../../components/search/SearchBar";
+import HostImage from "../../assets/images/become-host.jpg";
 
 const HomePage = () => {
   return (
@@ -35,7 +36,7 @@ const HomePage = () => {
               <button>Register as a host</button>
             </div>
             <img
-              src="/src/assets/images/become-host.jpg"
+              src={HostImage}
               alt="picture is showing a person is standing infront of check-in reception desk."
               className="h-48 w-full object-cover md:h-full md:w-48"
             />
