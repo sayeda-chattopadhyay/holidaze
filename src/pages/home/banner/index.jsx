@@ -1,7 +1,5 @@
 import { NavLink } from "react-router-dom";
-// import heroImage from "../../assets/images/heroImage.png";
-
-const Banner = () => {
+const HeroBanner = () => {
   return (
     <section className="bg-center bg-no-repeat bg-cover bg-gray-700 bg-blend-multiply">
       <div className="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
@@ -29,4 +27,4 @@ const Banner = () => {
   );
 };
 
-export default Banner;
+export default HeroBanner;
