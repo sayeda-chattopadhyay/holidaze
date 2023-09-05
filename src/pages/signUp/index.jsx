@@ -3,7 +3,7 @@ import SignUpForm from "./SignUpForm";
 
 const SignUpPage = () => {
   return (
-    <div className=" container max-w-4xl max-auto my-10 mx-10 p md:flex items-center justify-between border-4 border-red-600">
+    <div className=" container max-w-5xl mx-auto my-10 p flex-reserve md:flex items-center justify-between border-4 border-red-600 gap-10">
       <div>
         <TextSignUp />
       </div>
