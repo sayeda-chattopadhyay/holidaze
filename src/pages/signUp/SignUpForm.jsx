@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { useState } from "react";
+// import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { signUp } from "../../api/auth/signup.mjs";
@@ -25,7 +25,7 @@ const validationSchema = Yup.object({
 
 const SignUpForm = () => {
   const navigate = useNavigate();
-  const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  // const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -36,7 +36,8 @@ const SignUpForm = () => {
       venueManager: "",
     },
 
-    onSubmit: async (values, action) => {
+    onSubmit: (values, action) => {
+      //remove async kyeword
       const formData = {
         name: values.name,
         email: values.email,
@@ -45,24 +46,29 @@ const SignUpForm = () => {
         venueManager: values.venueManager,
       };
 
+      signUp(formData);
       action.resetForm();
 
       console.log("Form data:", formData);
 
-      try {
-        const response = await signUp(formData);
-        console.log("Api response:", response);
-        if (response.success) {
-          setRegistrationSuccess(true);
-          console.log("Registration success:", registrationSuccess);
+      setTimeout(() => {
+        navigate("/login"); // Redirect to login page
+      }, 2000);
 
-          setTimeout(() => {
-            navigate("/login"); // Redirect to login page
-          }, 2000); // Redirect after 2 seconds (adjust as needed)
-        }
-      } catch (error) {
-        console.log("Registration error:", error);
-      }
+      // try {
+      //   const response = await signUp(formData);
+      //   console.log("Api response:", response);
+      //   if (response.success) {
+      //     setRegistrationSuccess(true);
+      //     console.log("Registration success:", registrationSuccess);
+
+      //     setTimeout(() => {
+      //       navigate("/login"); // Redirect to login page
+      //     }, 2000); // Redirect after 2 seconds (adjust as needed)
+      //   }
+      // } catch (error) {
+      //   console.log("Registration error:", error);
+      // }
     },
 
     validationSchema,
@@ -73,11 +79,11 @@ const SignUpForm = () => {
 
   return (
     <>
-      {registrationSuccess && (
+      {/* {registrationSuccess && (
         <div className="text-green-500 text-sm mb-4 mt-20">
           Registration successful! You will be redirected to the login page.
         </div>
-      )}
+      )} */}
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
