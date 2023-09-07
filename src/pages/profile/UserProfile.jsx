@@ -9,11 +9,9 @@ const UserProfile = () => {
   useEffect(() => {
     async function getProfile() {
       try {
-        const response = await getProfileDetails();
-        console.log("The response is:", response);
-        const profile = await response.json();
-        console.log("The profile is:", profile);
-        setProfile(profile);
+        const profileData = await getProfileDetails();
+        console.log("The profile is:", profileData);
+        setProfile(profileData);
         setLoading(false);
       } catch (error) {
         console.log("The error is:", error);
@@ -22,7 +20,7 @@ const UserProfile = () => {
       }
     }
     getProfile();
-  }, []);
+  }, [profile]); // Include 'profile' in the dependency array
 
   if (loading) {
     return <div>Loading...</div>;
@@ -38,7 +36,7 @@ const UserProfile = () => {
       {profile && (
         <div>
           <p>Name: {profile.name}</p>
-          <p>Name: {profile.email}</p>
+          <p>Email: {profile.email}</p> {/* Changed 'Name' to 'Email' */}
         </div>
       )}
     </div>
@@ -46,3 +44,4 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
+
