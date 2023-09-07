@@ -1,9 +1,16 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { useAuth } from "../../context/authUtils.js";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const { getAccessToken, handleLogout } = useAuth();
+
+  const accessToken = getAccessToken();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -25,20 +32,47 @@ const Navbar = () => {
             Venues
           </NavLink>
         </div>
+
         <div className="md:flex space-x-4 hidden">
-          <NavLink
-            to="/logIn"
-            className="text-primary bg-white hover:bg-blue-800 hover:text-white border-2 transition ease-out duration-500 rounded-full px-3 py-2"
-          >
-            Login
-          </NavLink>
-          <NavLink
-            to="/signUp"
-            className="text-white hover:bg-white hover:text-primary border-2 transition ease-out duration-500 rounded-full px-3 py-2"
-          >
-            Signup
-          </NavLink>
+          {!accessToken ? (
+            // Show "Login" and "Signup" links when not logged in
+            <>
+              <NavLink
+                to="/logIn"
+                className="text-primary bg-white hover:bg-blue-800 hover:text-white border-2 transition ease-out duration-500 rounded-full px-3 py-2"
+              >
+                Login
+              </NavLink>
+              <NavLink
+                to="/signUp"
+                className="text-white hover:bg-white hover:text-primary border-2 transition ease-out duration-500 rounded-full px-3 py-2"
+              >
+                Signup
+              </NavLink>
+            </>
+          ) : (
+            // Show "Profile" link and "Logout" button when logged in
+            <>
+              <NavLink
+                to="/profile"
+                className="text-primary bg-white hover:bg-blue-800 hover:text-white border-2 transition ease-out duration-500 rounded-full px-3 py-2"
+              >
+                Profile
+              </NavLink>
+              <button
+                onClick={() => {
+                  handleLogout();
+                  navigate("/"); // Redirect to the home page after logout
+                }}
+                // Call clear function on click
+                className="text-white hover:bg-white hover:text-primary border-2 transition ease-out duration-500 rounded-full px-3 py-2"
+              >
+                Logout
+              </button>
+            </>
+          )}
         </div>
+
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
@@ -59,18 +93,42 @@ const Navbar = () => {
           >
             Venues
           </NavLink>
-          <NavLink
-            to="/logIn"
-            className=" text-white hover:text-gray-300 mb-2 border-2 rounded-full px-3 py-2"
-          >
-            Login
-          </NavLink>
-          <NavLink
-            to="/signUp"
-            className="text-white hover:text-gray-300 mb-2 border-2 rounded-full px-3 py-2 "
-          >
-            Signup
-          </NavLink>
+
+          {/* Display different navigation links/buttons based on the user's authentication status */}
+          {!accessToken ? (
+            <>
+              <NavLink
+                to="/logIn"
+                className=" text-white hover:text-gray-300 mb-2 border-2 rounded-full px-3 py-2"
+              >
+                Login
+              </NavLink>
+              <NavLink
+                to="/signUp"
+                className="text-white hover:text-gray-300 mb-2 border-2 rounded-full px-3 py-2"
+              >
+                Signup
+              </NavLink>
+            </>
+          ) : (
+            <>
+              <NavLink
+                to="/profile"
+                className="text-primary bg-white hover:bg-blue-800 hover:text-white border-2 transition ease-out duration-500 rounded-full px-3 py-2"
+              >
+                Profile
+              </NavLink>
+              <button
+                onClick={() => {
+                  handleLogout();
+                  navigate("/"); // Redirect to the home page after logout
+                }} // Call clear function on click
+                className="text-white hover:bg-white hover:text-primary border-2 transition ease-out duration-500 rounded-full px-3 py-2"
+              >
+                Logout
+              </button>
+            </>
+          )}
         </div>
       )}
     </nav>
