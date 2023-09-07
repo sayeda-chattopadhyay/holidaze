@@ -15,21 +15,32 @@ import ErrorPage from "./pages/notFoundPage";
 
 import BaseLayout from "./components/layouts/BaseLayout";
 
+// Auth
+
+import { AuthProvider } from "./context/AuthProvider";
+
+// function requireAuth(component) {
+//   const accessToken = localStorage.getItem("token");
+//   const loggedIn = Boolean(accessToken);
+
+//   return loggedIn ? component : <Navigate to="/login" />;
+// }
+
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Routes>
-        <Route path="/logIn" element={<LoginPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
         <Route path="/" element={<BaseLayout />}>
           <Route index element={<HomePage />} />
+          <Route path="/logIn" element={<LoginPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
           <Route path="/venues" element={<VenuesPage />} />
           <Route path="/venues/:id" element={<SpecificVenue />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
-    </>
+    </AuthProvider>
   );
 }
 
