@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 /**
  * Custom hook to fetch data from an API endpoint.
@@ -7,29 +7,29 @@ import { useState, useEffect } from 'react';
  */
 
 const ApiHook = (url) => {
-    const [data, setData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [isError, setIsError] = useState(false); // Fetch data from API endpoint
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false); // Fetch data from API endpoint
 
-useEffect(() => {
+  useEffect(() => {
     async function fetchData() {
-        try {
-            setIsError(false);
-            setIsLoading(true);
-            const response = await fetch(url);
-            const data = await response.json();
-            setData(data);
-        } catch (error) {
-            console.log(error);
-            setIsError(true);
-        }finally{
-            setIsLoading(false);
-        }
+      try {
+        setIsError(false);
+        setIsLoading(true);
+        const response = await fetch(url);
+        const data = await response.json();
+        setData(data);
+      } catch (error) {
+        console.log(error);
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
+      }
     }
     fetchData();
-}, [url])
+  }, [url]);
 
-  return { data, isLoading, isError}
-}
+  return { data, isLoading, isError };
+};
 
-export default ApiHook
+export default ApiHook;
