@@ -7,7 +7,7 @@ const method = "post";
 export function useLogin() {
   const auth = useAuth();
 
-  async function logIn(profile) {
+  async function logIn(credentials) {
     try {
       const url = loginURL;
 
@@ -16,7 +16,7 @@ export function useLogin() {
           "content-Type": "application/json",
         },
         method,
-        body: JSON.stringify(profile),
+        body: JSON.stringify(credentials),
       };
 
       const response = await fetch(url, userToLoginObject);
@@ -29,8 +29,7 @@ export function useLogin() {
         auth.save("token", accessToken);
         auth.save("profile", profileDetails);
 
-        // Redirect or perform any other actions as needed
-        // window.location.replace("/profile.html");
+      
       } else {
         throw new Error("Incorrect username or password");
       }
