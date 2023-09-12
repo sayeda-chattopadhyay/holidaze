@@ -25,8 +25,8 @@ export async function updateAvatar(avatarUrl) {
     const json = await response.json();
     console.log("New Url", json);
     localStorage.setItem("profile", JSON.stringify(json));
-
     return json;
+    
   } catch (error) {
     console.log("Register error", error.message);
     throw error;

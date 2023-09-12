@@ -12,10 +12,11 @@ export default function AvatarModal() {
       const newUrl = await updateAvatar(avatarUrl);
       console.log("new url", newUrl);
 
-      //   alert("Avatar updated successfully");
-      //setShowModal(false);
+      alert("Avatar updated successfully");
 
-      //   ; // this is not working
+      setShowModal(false);
+
+      window.location.reload();
     } catch (error) {
       console.log(error);
       alert("Something went wrong");
@@ -66,7 +67,7 @@ export default function AvatarModal() {
                   <button
                     className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={handleUpdadteAvatar()}
+                    onClick={handleUpdadteAvatar}
                   >
                     Update
                   </button>
