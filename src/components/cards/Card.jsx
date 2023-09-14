@@ -3,24 +3,29 @@ import { Link } from "react-router-dom";
 
 const Card = ({ venue }) => {
   const { id, name, price, location, media, meta } = venue;
-  console.log(id);
+  console.log(venue);
+  // console.log(id);
+
+  // const qs = "?_owner=true&_bookings=true"
 
   return (
-    <div className="container mx-auto mt-8">
+    <div className="container mx-auto mt-8 border border-red-500">
       <Link
         to={`/Venues/${id}`}
-        className="max-w-sm rounded overflow-hidden shadow-md hover:bg-slate-100 hover:shadow-lg bg-red-400"
+        className="max-w-sm rounded overflow-hidden shadow-md hover:bg-slate-100 hover:shadow-lg bg-red-400 transition duration-300 transform hover:-translate-y-1"
       >
-        <img className="w-full h-64 object-cover" src={media[0]} alt="Venue" />
+        <img className="w-full h-64 object-cover" src={media[0]} alt="{name}" />
         <div className="px-6 py-4 border border-b-gray-200">
-          <h5 className="font-bold text-xl mb-2">{name}</h5>
+          <h5 className="font-bold text-xl mb-2">{name.toUpperCase()}</h5>
 
           <p className="text-gray-700">
             Location: {location.address}, {location.city}, {location.country}
           </p>
-          <ul className="text-gray-700">
+          <ul className="text-gray-700 mt-2">
             {Object.entries(meta).map(([key, value]) => (
-              <li key={key}>{value ? `${key}: Yes` : `${key}: No`}</li>
+              <li key={key} className="flex items-center">
+                {value ? `${key}: Yes` : `${key}: No`}
+              </li>
             ))}
           </ul>
         </div>
