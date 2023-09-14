@@ -4,9 +4,13 @@ import { VENUES_URL } from "../../constants";
 import Card from "../../components/cards/Card";
 import SearchVenues from "../../components/search/SearchVenues";
 
+const qs = "?sort=created&sortOrder=desc&&_owner=true&_bookings=true";
+
+const allVenuesUrl = VENUES_URL + qs;
+
 const AllVenues = () => {
   const [search, setSearch] = useState("");
-  const { data, isLoading, isError } = ApiHook(VENUES_URL);
+  const { data, isLoading, isError } = ApiHook(allVenuesUrl);
 
   if (isLoading) {
     return <div>Loading</div>;
@@ -17,6 +21,7 @@ const AllVenues = () => {
   }
 
   const venues = data;
+  console.log("all venues", venues);
 
   const filteredVenues = venues.filter((venue) => {
     return search.toLowerCase() === ""
@@ -29,7 +34,7 @@ const AllVenues = () => {
   return (
     <>
       <SearchVenues onSearch={setSearch} />
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 place-items-center mt-10 border-4 border-green-800 px-10 py-10 ">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 place-items-center mt-10  px-10 py-10 ">
         {filteredVenues.length === 0 ? (
           <div className="mx-auto text-center text-2xl font-bold ">
             No results found

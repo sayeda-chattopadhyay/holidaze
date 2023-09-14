@@ -3,7 +3,7 @@ import AllVenues from "./AllVenues";
 
 const VenuesPage = () => {
   return (
-    <div>
+    <div className="px-10">
       <AllVenues />
       {/* <VenuesList /> */}
     </div>
