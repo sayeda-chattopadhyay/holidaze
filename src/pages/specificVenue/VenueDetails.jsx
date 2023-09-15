@@ -1,7 +1,7 @@
 import { FaWifi } from "react-icons/fa";
 import { FaUtensils } from "react-icons/fa";
-import { FaPaw } from 'react-icons/fa';
-import { FaCar } from 'react-icons/fa';
+import { FaPaw } from "react-icons/fa";
+import { FaCar } from "react-icons/fa";
 
 const VenueDetails = ({ venue }) => {
   const {
@@ -39,18 +39,42 @@ const VenueDetails = ({ venue }) => {
           <div>
             <h2>Info</h2>
             <div className="flex gap-6 my-4">
-            {meta.breakfast ? <FaUtensils /> : null}
-            {meta.wifi ? <FaWifi /> : null}
-            {meta.pets ? <FaPaw/> : null}
-            {meta.parking ? <FaCar/> : null}
-            </div> 
+              {meta.breakfast ? (
+                <div>
+                  <FaUtensils />
+                  <p>Breakfast</p>
+                </div>
+              ) : null}
 
+              {meta.wifi ? (
+                <div>
+                  {" "}
+                  <FaWifi />
+                  <p>Wi fi</p>
+                </div>
+              ) : null}
+
+              {meta.pets ? (
+                <div>
+                  {" "}
+                  <FaPaw />
+                  <p>Pets</p>{" "}
+                </div>
+              ) : null}
+
+              {meta.parking ? (
+                <div>
+                  <FaCar />
+                  <p>Parking</p>
+                </div>
+              ) : null}
+            </div>
           </div>
           <div>
             <h2>Owner Details</h2>
             <img src={owner.avatar} alt={owner.name} />
-            <p className="text-gray-700">Owner Name: {owner.name}</p>
-            <p className="text-gray-700">Owner Name: {owner.email}</p>
+            <p className="text-gray-700"> Name: {owner.name}</p>
+            <p className="text-gray-700">Email: {owner.email}</p>
           </div>
         </div>
         <div className="px-6 py-4 border border-b-gray-200">

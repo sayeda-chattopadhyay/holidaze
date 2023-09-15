@@ -11,12 +11,10 @@ export default function AvatarModal() {
     try {
       const newUrl = await updateAvatar(avatarUrl);
       console.log("new url", newUrl);
-
       alert("Avatar updated successfully");
-
       setShowModal(false);
 
-      window.location.reload();
+      window.location.reload(); // refresh page
     } catch (error) {
       console.log(error);
       alert("Something went wrong");
