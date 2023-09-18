@@ -39,11 +39,8 @@ const validationSchema = Yup.object().shape({
     .min(6, "Continent must be at least 6 characters")
     .max(50, "Continent must be at most 50 characters")
     .required("Continent is required"),
-  media: Yup.array().of(
-    Yup.string().url("Must be a valid URL").required("Required")
-  ),
-  // .min(1, "Must have at least 1 image")
-  // .max(5, "Must have at most 5 images")
+  media: Yup.string().url("Must be a valid URL").required("Required"),
+
   // .required("Must have at least 1 image"),
   // meta: Yup.object().shape({
   //   wifi: Yup.boolean(),
@@ -55,6 +52,7 @@ const validationSchema = Yup.object().shape({
 
 const CreateVenueForm = () => {
   const [mediaArray, setMediaArray] = useState([]);
+  console.log("mediaArray", mediaArray);
 
   const { values, handleBlur, handleChange, handleSubmit, touched, errors } =
     useFormik({
@@ -116,21 +114,23 @@ const CreateVenueForm = () => {
   console.log("Formik touched: ", touched);
   console.log("Formik values: ", values);
 
-  const pushMediaToArray = () => {
-    setMediaArray([...mediaArray, ""]);
-  };
-
-  const handleMediaChange = (e, index) => {
-    const updatedMedia = [...mediaArray];
-    updatedMedia[index] = e.target.value;
-    setMediaArray(updatedMedia);
-  };
-
   const removeMedia = (index) => {
     const updatedMedia = [...mediaArray];
     updatedMedia.splice(index, 1);
     setMediaArray(updatedMedia);
   };
+
+  function pushToMediaArray() {
+    const mediaValue = document.getElementById("media").value;
+    const urlRegex = /(ftp|http|https):\/\/[^ "]+$/;
+    if (urlRegex.test(mediaValue)) {
+      const newMediaArray = [...mediaArray, mediaValue];
+      setMediaArray(newMediaArray);
+      document.getElementById("media").value = "";
+    } else {
+      return null;
+    }
+  }
 
   return (
     <>
@@ -360,7 +360,7 @@ const CreateVenueForm = () => {
           </div>
         </div>
         {/* media preview section */}
-        <div>
+        {/* <div>
           <label
             htmlFor="media"
             className="block text-lg font-medium leading-6 text-gray-900"
@@ -387,23 +387,23 @@ const CreateVenueForm = () => {
               ))}
             </div>
           )}
-        </div>
+        </div> */}
         {/* media upload section */}
-        <div className="mt-2 w-full">
+        {/* <div className="mt-2 w-full">
           <input
-            type="url"
+            type="text"
             name="media"
             id="media"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.media}
+            // value={values.media}
             placeholder="Add valid Image url here"
             className="block w-full rounded-md border-0 px-2 py-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
           />
           <div className="flex justify-end">
             <button
               type="button"
-              onClick={pushMediaToArray}
+              onClick={pushToMediaArray}
               className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
             >
               Add
@@ -413,8 +413,62 @@ const CreateVenueForm = () => {
 
         {touched.media && errors.media ? (
           <div className="text-red-600">{errors.media}</div>
-        ) : null}
+        ) : null} */}
 
+        {/* lisa start */}
+        <div className="my-8 flex flex-col items-start">
+          <label
+            htmlFor="Images"
+            className="block font-paragraph text-sm font-medium leading-6 text-gray-900"
+          >
+            Images
+          </label>
+          {mediaArray && (
+            <div className="mt-4 flex flex-wrap gap-4">
+              {mediaArray.map((media, index) => (
+                <div key={index} className="relative h-24 w-24 rounded-md">
+                  <img
+                    src={media}
+                    alt="Images of the Accommodation"
+                    className="block h-full w-full rounded-md leading-6"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => removeMedia(index)}
+                    className="absolute bottom-0 right-0 z-10 rounded-md bg-red-700 p-1 text-xs text-white"
+                  >
+                    Remove
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="mt-2 w-full">
+            <input
+              type="url"
+              name="media"
+              id="media"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              placeholder="Add valid Image url here"
+              className="block w-full rounded-md border-0 px-2 py-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+            />
+            <div className="flex justify-end">
+              <button
+                type="button"
+                onClick={pushToMediaArray}
+                className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+          {touched.media && errors.media ? (
+            <div className="text-red-600">{errors.media}</div>
+          ) : null}
+        </div>
+        {/* lisa end */}
         <div>
           <button
             type="submit"
