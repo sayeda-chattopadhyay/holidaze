@@ -3,6 +3,7 @@ import AvatarModal from "../avatar/AvatarModal";
 import { useState } from "react";
 import BookingVenueCard from "../userBookings";
 import UserVenueCard from "../usersVenues";
+import CreateVenueForm from "../createVenue/CreateVenueForm";
 
 const DisplayProfile = ({ profile }) => {
   const { name, avatar, email, venueManager, bookings, venues } = profile;
@@ -98,7 +99,9 @@ const DisplayProfile = ({ profile }) => {
           </div>
         )}
         {activeTab === "createVenue" && (
-          <div>{/* form component */}</div>
+          <div className="container max-lg mx-auto px-4">
+            {<CreateVenueForm />}
+          </div>
         )}
       </div>
     </>
@@ -113,7 +116,8 @@ DisplayProfile.propTypes = {
     venueManager: PropTypes.bool.isRequired,
     bookings: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.number.isRequired,
+        id: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+          .isRequired,
         created: PropTypes.string.isRequired,
         dateFrom: PropTypes.string.isRequired,
         dateTo: PropTypes.string.isRequired,
@@ -124,6 +128,8 @@ DisplayProfile.propTypes = {
         }),
       })
     ),
+    
+    
   }).isRequired,
 };
 
