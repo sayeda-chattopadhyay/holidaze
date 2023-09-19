@@ -32,7 +32,50 @@ const DisplayProfile = ({ profile }) => {
       </div>
 
       <div className="container mx-auto mt-10">
-        <div className="flex-col md:flex md:flex-row justify-between items-center max-w-sm mx-auto md:max-w-lg px-4 py-4 ">
+        {venueManager ? (
+           <div className="flex-col md:flex md:flex-row justify-between items-center max-w-sm mx-auto md:max-w-lg px-4 py-4 ">
+          
+           <div
+             className={`border border-blue-500 px-4 py-4 cursor-pointer ${
+               activeTab === "bookings"
+                 ? "bg-red-500 text-white"
+                 : "bg-white text-red-500 hover:bg-red-100 hover:text-red-700"
+             }`}
+             onClick={() => setActiveTab("bookings")}
+           >
+             <h3 className="text-xl font-customFont text-center">
+               Your Upcoming Bookings
+             </h3>
+           </div>
+           <div
+             className={`border border-red-500 px-4 py-4 cursor-pointer ${
+               activeTab === "venues"
+                 ? "bg-red-500 text-white"
+                 : "bg-white text-red-500 hover:bg-red-100 hover:text-red-700"
+             }`}
+             onClick={() => setActiveTab("venues")}
+           >
+             <h1 className="text-3xl font-customFont text-center">
+               Your Rented Venues
+             </h1>
+           </div>
+           <div
+             className={`border border-red-500 px-4 py-4 cursor-pointer ${
+               activeTab === "expiredBookings"
+                 ? "bg-red-500 text-white"
+                 : "bg-white text-red-500 hover:bg-red-100 hover:text-red-700"
+             }`}
+             onClick={() => setActiveTab("createVenue")}
+           >
+             <h1 className="text-3xl font-customFont text-center">
+               Create New Venue
+             </h1>
+           </div>
+         </div>
+
+        ): (
+          <div className="flex-col md:flex md:flex-row justify-between items-center max-w-sm mx-auto md:max-w-lg px-4 py-4 ">
+          
           <div
             className={`border border-blue-500 px-4 py-4 cursor-pointer ${
               activeTab === "bookings"
@@ -45,7 +88,7 @@ const DisplayProfile = ({ profile }) => {
               Your Upcoming Bookings
             </h3>
           </div>
-          <div
+          {/* <div
             className={`border border-red-500 px-4 py-4 cursor-pointer ${
               activeTab === "venues"
                 ? "bg-red-500 text-white"
@@ -68,8 +111,11 @@ const DisplayProfile = ({ profile }) => {
             <h1 className="text-3xl font-customFont text-center">
               Create New Venue
             </h1>
-          </div>
+          </div> */}
         </div>
+        )}
+        
+        {/* render booking, rented venue, create venue form */}
         {activeTab === "bookings" && (
           <div className="container mx-auto px-10 py-10 max-w-2xl bg-gray-100 rounded-lg shadow-lg mt-10">
             <h1 className="text-center text-xl md:text-2xl bg-gray-200 py-2 rounded-lg">
