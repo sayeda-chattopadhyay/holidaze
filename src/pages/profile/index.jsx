@@ -1,6 +1,6 @@
 import useSingleProfile from "../../hooks/useSingleProfile";
 import retrieveProfileName from "../../helper/retrieveProfileName";
-import DisplayProfile from "./DisplayProfile";
+import DisplayProfile from "./displayUserProfile";
 
 const ProfilePage = () => {
   const profileName = retrieveProfileName();
