@@ -2,17 +2,16 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
 
-
 const validationSchema = Yup.object().shape({
   name: Yup.string()
     .min(6, "Name must be at least 6 characters")
     .max(50, "Name must be at most 50 characters")
     .required("Name is required"),
   description: Yup.string()
-    .min(20, "Description must be at least 20 characters")
+    .min(10, "Description must be at least 20 characters")
     .max(500, "Description must be at most 500 characters")
     .required("Description is required"),
-  price: Yup.number() // more than zero
+  price: Yup.number()
     .required("Price is required")
     .positive("Price must be positive")
     .integer("Price must be an integer"),
@@ -20,33 +19,34 @@ const validationSchema = Yup.object().shape({
     .required("Required")
     .positive("Must be positive")
     .integer("Must be an integer"),
-  address: Yup.string()
-    .min(6, "Address must be at least 6 characters")
-    .max(50, "Address must be at most 50 characters")
-    .required("Address is required"),
-  city: Yup.string()
-    .min(6, "City must be at least 6 characters")
-    .max(50, "City must be at most 50 characters")
-    .required("City is required"),
-  zip: Yup.string()
-    .min(6, "Zip must be at least 6 characters")
-    .max(50, "Zip must be at most 50 characters")
-    .required("Zip is required"),
-  country: Yup.string()
-    .min(6, "Country must be at least 6 characters")
-    .max(50, "Country must be at most 50 characters")
-    .required("Country is required"),
-  continent: Yup.string()
-    .min(6, "Continent must be at least 6 characters")
-    .max(50, "Continent must be at most 50 characters")
-    .required("Continent is required"),
   media: Yup.string().url("Must be a valid URL").required("Required"),
-
   meta: Yup.object().shape({
     wifi: Yup.boolean(),
     parking: Yup.boolean(),
     breakfast: Yup.boolean(),
     pets: Yup.boolean(),
+  }),
+  location: Yup.object().shape({
+    address: Yup.string()
+      .min(4, "Must be 2 characters or more!")
+      .max(60, "Cannot be longer than 40 characters")
+      .required("Required"),
+    city: Yup.string()
+      .min(4, "Must be 2 characters or more!")
+      .max(40, "Cannot be longer than 40 characters")
+      .required("Required"),
+    zip: Yup.string()
+      .min(4, "Must be 2 characters or more!")
+      .max(40, "Cannot be longer than 40 characters")
+      .required("Required"),
+    country: Yup.string()
+      .min(4, "Must be 2 characters or more!")
+      .max(40, "Cannot be longer than 40 characters")
+      .required("Required"),
+    continent: Yup.string()
+      .min(4, "Must be 2 characters or more!")
+      .max(40, "Cannot be longer than 40 characters")
+      .required("Required"),
   }),
 });
 
@@ -68,7 +68,7 @@ const CreateVenueForm = () => {
       description: "",
       media: [],
       price: 0,
-      maxGuests: 1,
+      maxGuests: 0,
       location: {
         address: "",
         city: "",
@@ -95,11 +95,11 @@ const CreateVenueForm = () => {
         rating: 0, // Default rating
         media: mediaArray,
         location: {
-          address: values.address,
-          city: values.city,
-          zip: values.zip,
-          country: values.country,
-          continent: values.continent,
+          address: values.location.address,
+          city: values.location.city,
+          zip: values.location.zip,
+          country: values.location.country,
+          continent: values.location.continent,
           lat: 0, // Default latitude
           lng: 0, // Default longitude
         },
@@ -117,8 +117,8 @@ const CreateVenueForm = () => {
     validationSchema,
   });
 
-  // console.log("Formik error : ", errors);
-  // console.log("Formik touched: ", touched);
+  console.log("Formik error : ", errors);
+  console.log("Formik touched: ", touched);
   console.log("Formik values: ", values);
 
   const removeMedia = (index) => {
@@ -231,17 +231,19 @@ const CreateVenueForm = () => {
             <input
               className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               id="address"
-              name="address"
+              name="location.address"
               type="text"
               autoComplete="off"
               required
               placeholder="Please provide a valid address"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.address}
+              value={values.location.address}
             />
-            {touched.address && errors.address ? (
-              <div className="text-red-500 text-sm">{errors.address}</div>
+            {touched.location?.address && errors.location?.address ? (
+              <div className="text-red-500">
+                <p>{errors.location.address}</p>
+              </div>
             ) : null}
           </div>
         </div>
@@ -256,16 +258,16 @@ const CreateVenueForm = () => {
             <input
               className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               id="city"
-              name="city"
+              name="location.city"
               type="text"
               autoComplete="off"
               required
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.city}
+              value={values.location.city}
             />
-            {touched.city && errors.city ? (
-              <div className="text-red-500 text-sm">{errors.city}</div>
+            {touched.location?.city && errors.location?.city ? (
+              <div className="text-red-500 text-sm">{errors.location.city}</div>
             ) : null}
           </div>
         </div>
@@ -280,16 +282,16 @@ const CreateVenueForm = () => {
             <input
               className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               id="zip"
-              name="zip"
+              name="location.zip"
               type="number"
               autoComplete="off"
               required
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.zip}
+              value={values.location.zip}
             />
-            {touched.zip && errors.zip ? (
-              <div className="text-red-500 text-sm">{errors.zip}</div>
+            {touched.location?.zip && errors.location?.zip ? (
+              <div className="text-red-500 text-sm">{errors.location.zip}</div>
             ) : null}
           </div>
         </div>
@@ -304,16 +306,18 @@ const CreateVenueForm = () => {
             <input
               className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               id="country"
-              name="country"
+              name="location.country"
               type="text"
               autoComplete="off"
               required
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.country}
+              value={values.location.country}
             />
-            {touched.country && errors.country ? (
-              <div className="text-red-500 text-sm">{errors.country}</div>
+            {touched.location?.country && errors.location?.country ? (
+              <div className="text-red-500 text-sm">
+                {errors.location.country}
+              </div>
             ) : null}
           </div>
         </div>
@@ -328,16 +332,18 @@ const CreateVenueForm = () => {
             <input
               className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               id="continent"
-              name="continent"
+              name="location.continent"
               type="text"
               autoComplete="off"
               required
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.continent}
+              value={values.location.continent}
             />
-            {touched.continent && errors.continent ? (
-              <div className="text-red-500 text-sm">{errors.continent}</div>
+            {touched.location?.continent && errors.location?.continent ? (
+              <div className="text-red-500 text-sm">
+                {errors.location.continent}
+              </div>
             ) : null}
           </div>
         </div>
