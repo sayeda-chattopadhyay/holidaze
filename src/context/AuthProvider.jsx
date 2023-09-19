@@ -21,8 +21,9 @@ export function AuthProvider({ children }) {
   function load(key) {
     try {
       const value = localStorage.getItem(key);
-      return JSON.parse(value);
-    } catch {
+      return JSON.parse(value); // retun value ? JSON.parse(value) : null;
+    } catch(error) {
+      console.log("Error loading from local storage", error);
       return null;
     }
   }
