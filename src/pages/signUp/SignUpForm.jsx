@@ -33,7 +33,7 @@ const SignUpForm = () => {
       email: "",
       password: "",
       avatar: "",
-      venueManager: "",
+      venueManager: false, // false
     },
 
     onSubmit: (values, action) => {
@@ -95,7 +95,6 @@ const SignUpForm = () => {
             Sign Up
           </h2>
         </div>
-
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form
             className="space-y-6"
@@ -196,7 +195,6 @@ const SignUpForm = () => {
                   name="avatar"
                   type="avatar"
                   autoComplete="off"
-                  required
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.avatar}
@@ -215,9 +213,18 @@ const SignUpForm = () => {
             <fieldset className="flex flex-col gap-4 md:flex-row md:gap-12">
               <p>Do you want to rent out an accommodation??</p>
               <div>
-                <input
+                {/* <input
                   value={true}
                   defaultChecked={formik.values.venueManager === true}
+                  onChange={() => {
+                    formik.setFieldValue("venueManager", true);
+                  }}
+                  type="radio"
+                  id="yes"
+                  name="venueManager"
+                /> */}
+                <input
+                  checked={formik.values.venueManager}
                   onChange={() => {
                     formik.setFieldValue("venueManager", true);
                   }}
@@ -230,9 +237,18 @@ const SignUpForm = () => {
                 </label>
               </div>
               <div>
-                <input
+                {/* <input
                   value={false}
                   defaultChecked={formik.values.venueManager === false}
+                  onChange={() => {
+                    formik.setFieldValue("venueManager", false);
+                  }}
+                  type="radio"
+                  id="no"
+                  name="venueManager"
+                /> */}
+                <input
+                  checked={!formik.values.venueManager}
                   onChange={() => {
                     formik.setFieldValue("venueManager", false);
                   }}
