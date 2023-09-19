@@ -111,12 +111,12 @@ const CreateVenueForm = () => {
       };
       try {
         await createVenue(formData);
+        action.resetForm();
+        setMediaArray([]);
       } catch (error) {
         console.log("error", error);
       }
-      // api call
 
-      action.resetForm();
       console.log("formData", formData);
     },
     validationSchema,
