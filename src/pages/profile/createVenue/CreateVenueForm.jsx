@@ -86,7 +86,7 @@ const CreateVenueForm = () => {
       },
     },
 
-    onSubmit: (values, action) => {
+    onSubmit: async (values, action) => {
       console.log("Form submitted with values:", values);
 
       const formData = {
@@ -94,7 +94,6 @@ const CreateVenueForm = () => {
         description: values.description,
         price: values.price,
         maxGuests: values.maxGuests,
-        rating: 0, // Default rating
         media: mediaArray,
         location: {
           address: values.location.address,
@@ -102,8 +101,6 @@ const CreateVenueForm = () => {
           zip: values.location.zip,
           country: values.location.country,
           continent: values.location.continent,
-          lat: 0, // Default latitude
-          lng: 0, // Default longitude
         },
         meta: {
           wifi: values.meta.wifi,
@@ -112,8 +109,12 @@ const CreateVenueForm = () => {
           pets: values.meta.pets,
         },
       };
+      try {
+        await createVenue(formData);
+      } catch (error) {
+        console.log("error", error);
+      }
       // api call
-      createVenue(formData);
 
       action.resetForm();
       console.log("formData", formData);
@@ -139,6 +140,7 @@ const CreateVenueForm = () => {
       setMediaArray(newMediaArray);
       document.getElementById("media").value = "";
     } else {
+      console.error("Invalid media URL");
       return null;
     }
   }
