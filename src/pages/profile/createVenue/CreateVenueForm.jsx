@@ -2,6 +2,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
 
+import { createVenue } from "./createVenue";
+
 const validationSchema = Yup.object().shape({
   name: Yup.string()
     .min(6, "Name must be at least 6 characters")
@@ -111,6 +113,8 @@ const CreateVenueForm = () => {
         },
       };
       // api call
+      createVenue(formData);
+
       action.resetForm();
       console.log("formData", formData);
     },
