@@ -289,7 +289,7 @@ const CreateVenueForm = () => {
               className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               id="zip"
               name="location.zip"
-              type="number"
+              type="text"
               autoComplete="off"
               required
               onChange={handleChange}
@@ -366,7 +366,6 @@ const CreateVenueForm = () => {
               id="maxGuests"
               name="maxGuests"
               type="number"
-              min="1"
               autoComplete="off"
               required
               onChange={handleChange}
