@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import ApiHook from "../../hooks/ApiHook";
 import { VENUES_URL } from "../../constants/index";
-import VenueDetails from "../specificVenue/VenueDetails";
+import VenueDetails from "./VenueDetails";
 
 const qs = "?_owner=true&_bookings=true";
 
