@@ -1,3 +1,5 @@
+// import { Link } from "react-router-dom";
+
 const BookingVenueCard = ({ booking }) => {
   const {
     guests,
@@ -25,7 +27,9 @@ const BookingVenueCard = ({ booking }) => {
         />
         <div className="p-4 md:w-1/2">
           <h2 className="text-2xl font-semibold mb-2">{name}</h2>
-          <p className="text-sm text-gray-600 mb-2">{location.city} , {location.country}</p>
+          <p className="text-sm text-gray-600 mb-2">
+            {location.city} , {location.country}
+          </p>
           <p className="text-sm text-gray-600 mb-2">
             Check-in: {formatDate(dateFrom)}
           </p>
