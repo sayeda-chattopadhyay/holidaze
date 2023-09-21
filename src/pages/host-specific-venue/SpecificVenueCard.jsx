@@ -4,6 +4,7 @@ import { FaPaw } from "react-icons/fa";
 import { FaCar } from "react-icons/fa";
 import { Carousel } from "react-responsive-carousel";
 import NoImage from "/src/assets/images/no-image.jpg";
+import VenueUpdateModal from "./updateVenue/VenueUpdateModal";
 
 const SpecificVenueCard = ({ specificVenue }) => {
   console.log("specificVenue", specificVenue);
@@ -21,9 +22,9 @@ const SpecificVenueCard = ({ specificVenue }) => {
     maxGuests,
   } = specificVenue;
   console.log(specificVenue);
+  console.log(specificVenue.id)
   return (
     <div key={id}>
-
       <div className="container max-w-5xl mx-auto px-4 py-4">
         <Carousel showStatus={false} showThumbs={false}>
           {media.map((imageUrl, index) => (
@@ -90,21 +91,21 @@ const SpecificVenueCard = ({ specificVenue }) => {
             </div>
           </div>
           <div className="flex gap-5">
-            <button>Edit</button>
+            <VenueUpdateModal specificVenue ={specificVenue}/>
             <button>Delete</button>
           </div>
         </div>
-
+{/* 
         <div className="w-full md:w-1/3 px-4 py-4 border border-red-600">
           <h2>Booking Details</h2>
           {bookings && bookings.length > 1 ? (
             bookings.map((booking) => {
-              <div>Guests:{booking.guest} </div>;
+              <div>{booking} </div>;
             })
           ) : (
             <div>no bookings</div>
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   );
