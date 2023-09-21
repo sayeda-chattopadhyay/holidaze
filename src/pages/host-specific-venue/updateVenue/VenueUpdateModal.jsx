@@ -4,7 +4,15 @@ import UpdateVenueForm from "./UpdateVenueForm";
 export default function VenueUpdateModal({ specificVenue }) {
   const [showModal, setShowModal] = useState(false);
 
-  console.log("specificVenue id:",specificVenue.id);
+
+
+// function to close the modal
+
+const closeModal = () =>{
+  setShowModal(false);
+
+};
+
 
   return (
     <>
@@ -44,7 +52,7 @@ export default function VenueUpdateModal({ specificVenue }) {
               </div>
 
               {/* Update Venue Form */}
-              <UpdateVenueForm specificVenue={specificVenue} />
+              <UpdateVenueForm specificVenue={specificVenue}  closeModal= {closeModal}/>
             </div>
           </div>
         </div>

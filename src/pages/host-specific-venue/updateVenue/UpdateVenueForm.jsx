@@ -1,7 +1,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
-
 import { updateVenue } from "./updateVenue.mjs";
 
 const validationSchema = Yup.object().shape({
@@ -21,7 +20,7 @@ const validationSchema = Yup.object().shape({
     .required("Required")
     .positive("Must be positive")
     .integer("Must be an integer"),
-  media: Yup.string().url("Must be a valid URL").required("Required"),
+  media: Yup.string().url("Must be a valid URL"),
   meta: Yup.object().shape({
     wifi: Yup.boolean(),
     parking: Yup.boolean(),
@@ -52,13 +51,13 @@ const validationSchema = Yup.object().shape({
   }),
 });
 
-const UpdateVenueForm = ({ specificVenue }) => {
+const UpdateVenueForm = ({ specificVenue, closeModal }) => {
   const [updatedVenue, setUpdatedVenue] = useState(null);
   const [mediaArray, setMediaArray] = useState(specificVenue?.media || []);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
 
   const id = specificVenue.id;
-  console.log("specificVenue id:", id);
 
   const {
     values,
@@ -98,7 +97,7 @@ const UpdateVenueForm = ({ specificVenue }) => {
         description: values.description,
         price: values.price,
         maxGuests: values.maxGuests,
-        media: specificVenue.mediaArray || [],
+        media: mediaArray,
         location: {
           address: values.location.address,
           city: values.location.city,
@@ -116,7 +115,12 @@ const UpdateVenueForm = ({ specificVenue }) => {
       try {
         const updatedVenueData = await updateVenue(formData, id);
         setUpdatedVenue(updatedVenueData);
-        console.log("updatedVenue", updatedVenue);
+        setSuccessMessage("Venue updated successfully");
+        setTimeout(() => {
+          closeModal();
+          window.location.reload();
+        }, 2000);
+
         // action.resetForm();
         // setMediaArray([]);
       } catch (error) {
@@ -155,6 +159,7 @@ const UpdateVenueForm = ({ specificVenue }) => {
   return (
     <div className="container px-6 py-6 border">
       <h1>Update Venue</h1>
+      {successMessage && <p className="text-green-500">{successMessage}</p>}
       {errorMessage && <p className="text-red-500">{errorMessage}</p>}
       <form className="space-y-6" onSubmit={handleSubmit}>
         <div>

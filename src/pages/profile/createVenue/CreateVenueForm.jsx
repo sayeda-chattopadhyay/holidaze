@@ -21,7 +21,7 @@ const validationSchema = Yup.object().shape({
     .required("Required")
     .positive("Must be positive")
     .integer("Must be an integer"),
-  media: Yup.string().url("Must be a valid URL").required("Required"),
+  media: Yup.string().url("Must be a valid URL"),
   meta: Yup.object().shape({
     wifi: Yup.boolean(),
     parking: Yup.boolean(),

@@ -10,6 +10,7 @@ import VenuesPage from "./pages/venues";
 import SpecificVenue from "./pages/specificVenue";
 import ProfilePage from "./pages/profile";
 import ErrorPage from "./pages/notFoundPage";
+import HostSpecificVenue from "./pages/host-specific-venue";
 
 // layouts
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="/venues" element={<VenuesPage />} />
           <Route path="/venues/:id" element={<SpecificVenue />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/host-specific-venue/:id" element={<HostSpecificVenue />} />
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
