@@ -30,23 +30,23 @@ const validationSchema = Yup.object().shape({
   }),
   location: Yup.object().shape({
     address: Yup.string()
-      .min(4, "Must be 2 characters or more!")
-      .max(60, "Cannot be longer than 40 characters")
+      .min(4, "Must be 4 characters or more!")
+      .max(60, "Cannot be longer than 60 characters")
       .required("Required"),
     city: Yup.string()
-      .min(4, "Must be 2 characters or more!")
-      .max(40, "Cannot be longer than 40 characters")
+      .min(4, "Must be 4 characters or more!")
+      .max(60, "Cannot be longer than 60 characters")
       .required("Required"),
     zip: Yup.string()
-      .min(4, "Must be 2 characters or more!")
+      .min(4, "Must be 4 characters or more!")
       .max(40, "Cannot be longer than 40 characters")
       .required("Required"),
     country: Yup.string()
-      .min(4, "Must be 2 characters or more!")
+      .min(4, "Must be 4 characters or more!")
       .max(40, "Cannot be longer than 40 characters")
       .required("Required"),
     continent: Yup.string()
-      .min(4, "Must be 2 characters or more!")
+      .min(4, "Must be 4 characters or more!")
       .max(40, "Cannot be longer than 40 characters")
       .required("Required"),
   }),
