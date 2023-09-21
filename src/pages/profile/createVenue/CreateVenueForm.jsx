@@ -54,7 +54,7 @@ const validationSchema = Yup.object().shape({
 
 const CreateVenueForm = () => {
   const [mediaArray, setMediaArray] = useState([]);
-  console.log("mediaArray", mediaArray);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const {
     values,
@@ -115,6 +115,7 @@ const CreateVenueForm = () => {
         setMediaArray([]);
       } catch (error) {
         console.log("error", error);
+        setErrorMessage(error);
       }
 
       console.log("formData", formData);
@@ -148,6 +149,7 @@ const CreateVenueForm = () => {
   return (
     <div className="container px-4 py-4 border border-red-600">
       <h1>Create Venue</h1>
+      {errorMessage && <p className="text-red-500">{errorMessage}</p>}
       <form className="space-y-6" onSubmit={handleSubmit}>
         <div>
           <label
