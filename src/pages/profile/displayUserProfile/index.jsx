@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import AvatarModal from "../avatar/AvatarModal";
 import { useState } from "react";
 import BookingVenueCard from "../userBookings";
-import UserVenueCard from "../usersVenues";
+import VenueCardCretedByHost from "../usersVenues";
 import CreateVenueForm from "../createVenue/CreateVenueForm";
 import noAvatarImage from "/src/assets/images/no-avatar.png";
 
@@ -114,7 +114,10 @@ const DisplayProfile = ({ profile }) => {
             </h1>
             {venues && venues.length > 0 ? (
               venues.map((userVenue) => (
-                <UserVenueCard key={userVenue.id} userVenue={userVenue} />
+                <VenueCardCretedByHost
+                  key={userVenue.id}
+                  userVenue={userVenue}
+                />
               ))
             ) : (
               <p>No Venues created by you</p>
