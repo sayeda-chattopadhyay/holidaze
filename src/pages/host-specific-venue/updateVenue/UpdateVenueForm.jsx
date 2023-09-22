@@ -5,11 +5,11 @@ import { updateVenue } from "./updateVenue.mjs";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
-    .min(6, "Name must be at least 6 characters")
+    .min(4, "Name must be at least 4 characters")
     .max(50, "Name must be at most 50 characters")
     .required("Name is required"),
   description: Yup.string()
-    .min(10, "Description must be at least 20 characters")
+    .min(6, "Description must be at least 6 characters")
     .max(500, "Description must be at most 500 characters")
     .required("Description is required"),
   price: Yup.number()
@@ -20,7 +20,9 @@ const validationSchema = Yup.object().shape({
     .required("Required")
     .positive("Must be positive")
     .integer("Must be an integer"),
-  media: Yup.string().url("Must be a valid URL"),
+  //media: Yup.string().url("Must be a valid URL"),
+  media: Yup.array().of(Yup.string().url("Invalid URL")),
+
   meta: Yup.object().shape({
     wifi: Yup.boolean(),
     parking: Yup.boolean(),
@@ -52,10 +54,10 @@ const validationSchema = Yup.object().shape({
 });
 
 const UpdateVenueForm = ({ specificVenue, closeModal }) => {
-  const [updatedVenue, setUpdatedVenue] = useState(null);
+  // const [updatedVenue, setUpdatedVenue] = useState(null);
   const [mediaArray, setMediaArray] = useState(specificVenue?.media || []);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [successMessage, setSuccessMessage] = useState(null);
+  // const [successMessage, setSuccessMessage] = useState(null);
 
   const id = specificVenue.id;
 
@@ -113,9 +115,10 @@ const UpdateVenueForm = ({ specificVenue, closeModal }) => {
         },
       };
       try {
-        const updatedVenueData = await updateVenue(formData, id);
-        setUpdatedVenue(updatedVenueData);
-        setSuccessMessage("Venue updated successfully");
+        // const updatedVenueData = await updateVenue(formData, id);
+        // setUpdatedVenue(updatedVenueData);
+        await updateVenue(formData, id);
+        // setSuccessMessage("Venue updated successfully");
         setTimeout(() => {
           closeModal();
           window.location.reload();
@@ -133,34 +136,26 @@ const UpdateVenueForm = ({ specificVenue, closeModal }) => {
     validationSchema,
   });
 
-  console.log("Formik error : ", errors);
-  console.log("Formik touched: ", touched);
-  console.log("Formik UpdateFormv alues: ", values);
-
-  const removeMedia = (index) => {
-    const updatedMedia = [...mediaArray];
-    updatedMedia.splice(index, 1);
-    setMediaArray(updatedMedia);
+  const pushMedia = () => {
+    setMediaArray([...mediaArray, ""]);
   };
 
-  function pushToMediaArray() {
-    const mediaValue = document.getElementById("media").value;
-    const urlRegex = /(ftp|http|https):\/\/[^ "]+$/;
-    if (urlRegex.test(mediaValue)) {
-      const newMediaArray = [...mediaArray, mediaValue];
-      setMediaArray(newMediaArray);
-      document.getElementById("media").value = "";
-    } else {
-      console.error("Invalid media URL");
-      return null;
-    }
-  }
+  const handleMediaChange = (e, index) => {
+    const updatedMediaUrls = [...mediaArray];
+    updatedMediaUrls[index] = e.target.value;
+    setMediaArray(updatedMediaUrls);
+  };
+  const removeMedia = (index) => {
+    const updatedMediaUrls = [...mediaArray];
+    updatedMediaUrls.splice(index, 1);
+    setMediaArray(updatedMediaUrls);
+  };
 
   return (
     <div className="container px-6 py-6 border">
       <h1>Update Venue</h1>
-      {successMessage && <p className="text-green-500">{successMessage}</p>}
-      {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+      {/* {successMessage && <p className="text-green-500">{successMessage}</p>}
+      {errorMessage && <p className="text-red-500">{errorMessage}</p>} */}
       <form className="space-y-6" onSubmit={handleSubmit}>
         <div>
           <label
@@ -400,60 +395,70 @@ const UpdateVenueForm = ({ specificVenue, closeModal }) => {
           </div>
         </div>
 
-        <div className="my-8 flex flex-col items-start">
-          <label
-            htmlFor="Images"
-            className="block font-paragraph text-sm font-medium leading-6 text-gray-900"
-          >
-            Add Images
-          </label>
-          {mediaArray && (
-            <div className="mt-4 flex flex-wrap gap-4">
+        {/* media ends */}
+
+        <div className="py-3 ">
+          <div>
+            <div className="py-3 flex flex-col justify-center flex-wrap">
+              <label
+                htmlFor="media"
+                className="block uppercase tracking-wide text-xs font-bold mb-2"
+              >
+                Add Media
+              </label>
+
               {mediaArray.map((media, index) => (
-                <div key={index} className="relative h-24 w-24 rounded-md">
-                  <img
-                    src={media}
-                    alt="Images of the Accommodation"
-                    className="block h-full w-full rounded-md leading-6"
+                <div key={index}>
+                  <input
+                    type="url"
+                    name={`media-${index}`}
+                    className="px-3 py-2 bg-white border-b-2 border-slate-300 focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
+                    placeholder="Image URL"
+                    value={media}
+                    onChange={(e) => handleMediaChange(e, index)}
+                    onBlur={handleBlur}
                   />
-                  <button
-                    type="button"
-                    onClick={() => removeMedia(index)}
-                    className="absolute bottom-0 right-0 z-10 rounded-md bg-red-700 p-1 text-xs text-white"
-                  >
-                    Remove
-                  </button>
+                  {media && (
+                    <div className="relative h-24 w-24 rounded-md">
+                      <img
+                        src={media}
+                        alt={`Uploaded Image ${index}`}
+                        className=" flex gap-1 w-28 h-30 rounded object-cover"
+                      />
+                      <button
+                        className="absolute bottom-0 right-0 z-10 rounded-md bg-red-700 p-1 text-xs text-white"
+                        onClick={() => removeMedia(index)}
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  )}
+
+                  {/* media ends */}
                 </div>
               ))}
-            </div>
-          )}
-
-          <div className="mt-2 w-full">
-            <input
-              type="url"
-              name="media"
-              id="media"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              placeholder="Add valid Image url here"
-              className="block w-full rounded-md border-0 px-2 py-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
-            />
-            <div className="flex justify-end">
-              <button
-                type="button"
-                onClick={pushToMediaArray}
-                className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
-              >
-                Add
-              </button>
+              <div className="flex gap-3 my-4">
+                <button
+                  type="button"
+                  onClick={pushMedia}
+                  className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
+                >
+                  Add Media
+                </button>
+              </div>
             </div>
           </div>
+
           {touched.media && errors.media ? (
-            <div className="text-red-600">{errors.media}</div>
+            <div className="text-red-500">
+              <p>{errors.media}</p>
+            </div>
           ) : null}
         </div>
+
+        {/* media end */}
+
         <div>
-          {/* meta data start */}
           <div className="mt-6">
             <h3 className="mb-4 font-semibold text-gray-900">Add facilities</h3>
             <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
