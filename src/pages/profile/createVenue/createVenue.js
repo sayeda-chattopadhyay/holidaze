@@ -26,13 +26,9 @@ export async function createVenue(formData) {
 
     const data = await response.json();
 
-    console.log("venueFormdata", data);
-
     return data;
   } catch (error) {
     console.log("Create venue error", error.message);
     throw error;
   }
 }
-
-
