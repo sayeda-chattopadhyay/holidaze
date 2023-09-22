@@ -6,22 +6,27 @@ import { createVenue } from "./createVenue";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
-    .min(6, "Name must be at least 6 characters")
+    .min(4, "Name must be at least 4 characters")
     .max(50, "Name must be at most 50 characters")
     .required("Name is required"),
   description: Yup.string()
-    .min(10, "Description must be at least 20 characters")
+    .min(10, "Description must be at least 10 characters")
     .max(500, "Description must be at most 500 characters")
     .required("Description is required"),
   price: Yup.number()
-    .required("Price is required")
-    .positive("Price must be positive")
-    .integer("Price must be an integer"),
+    .min(0, "Must be + characters or more!")
+    .required("Required"),
+  // .required("Price is required")
+  // .positive("Price must be positive")
+  // .integer("Price must be an integer"),
   maxGuests: Yup.number()
-    .required("Required")
-    .positive("Must be positive")
-    .integer("Must be an integer"),
-  media: Yup.string().url("Must be a valid URL"),
+    .min(0, "Must be + characters or more!")
+    .required("Required"),
+  // .positive("Must be positive")
+  // .integer("Must be an integer"),
+  // media: Yup.string().url("Must be a valid URL"),
+  media: Yup.array().of(Yup.string().url("Invalid URL")), //problem is here
+
   meta: Yup.object().shape({
     wifi: Yup.boolean(),
     parking: Yup.boolean(),
@@ -56,6 +61,8 @@ const CreateVenueForm = () => {
   const [mediaArray, setMediaArray] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
 
+  console.log("mediaArray:", mediaArray);
+
   const {
     values,
     handleBlur,
@@ -69,8 +76,8 @@ const CreateVenueForm = () => {
       name: "",
       description: "",
       media: [],
-      price: 0,
-      maxGuests: 0,
+      price: 1,
+      maxGuests: 1,
       location: {
         address: "",
         city: "",
@@ -95,6 +102,7 @@ const CreateVenueForm = () => {
         price: values.price,
         maxGuests: values.maxGuests,
         media: mediaArray,
+
         location: {
           address: values.location.address,
           city: values.location.city,
@@ -111,8 +119,16 @@ const CreateVenueForm = () => {
       };
       try {
         await createVenue(formData);
+
+        // success message
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+
         action.resetForm();
-        setMediaArray([]);
+
+        // setMediaArray([]);  // change for sometimes
+        // reset media array
       } catch (error) {
         console.log("error", error);
         setErrorMessage(error);
@@ -123,28 +139,20 @@ const CreateVenueForm = () => {
     validationSchema,
   });
 
-  console.log("Formik error : ", errors);
-  console.log("Formik touched: ", touched);
-  console.log("Formik values: ", values);
-
-  const removeMedia = (index) => {
-    const updatedMedia = [...mediaArray];
-    updatedMedia.splice(index, 1);
-    setMediaArray(updatedMedia);
+  const pushMedia = () => {
+    setMediaArray([...mediaArray, ""]);
   };
 
-  function pushToMediaArray() {
-    const mediaValue = document.getElementById("media").value;
-    const urlRegex = /(ftp|http|https):\/\/[^ "]+$/;
-    if (urlRegex.test(mediaValue)) {
-      const newMediaArray = [...mediaArray, mediaValue];
-      setMediaArray(newMediaArray);
-      document.getElementById("media").value = "";
-    } else {
-      console.error("Invalid media URL");
-      return null;
-    }
-  }
+  const handleMediaChange = (e, index) => {
+    const updatedMediaUrls = [...mediaArray];
+    updatedMediaUrls[index] = e.target.value;
+    setMediaArray(updatedMediaUrls);
+  };
+  const removeMedia = (index) => {
+    const updatedMediaUrls = [...mediaArray];
+    updatedMediaUrls.splice(index, 1);
+    setMediaArray(updatedMediaUrls);
+  };
 
   return (
     <div className="container px-4 py-4 border border-red-600">
@@ -380,58 +388,73 @@ const CreateVenueForm = () => {
           </div>
         </div>
 
-        <div className="my-8 flex flex-col items-start">
-          <label
-            htmlFor="Images"
-            className="block font-paragraph text-sm font-medium leading-6 text-gray-900"
-          >
-            Add Images
-          </label>
-          {mediaArray && (
-            <div className="mt-4 flex flex-wrap gap-4">
+        <div className="py-3 ">
+          <div>
+            <div className="py-3 flex flex-col justify-center flex-wrap">
+              <label
+                htmlFor="media"
+                className="block uppercase tracking-wide text-xs font-bold mb-2"
+              >
+                Add Media
+              </label>
+
               {mediaArray.map((media, index) => (
-                <div key={index} className="relative h-24 w-24 rounded-md">
-                  <img
-                    src={media}
-                    alt="Images of the Accommodation"
-                    className="block h-full w-full rounded-md leading-6"
+                <div key={index}>
+                  <input
+                    type="url"
+                    name={`media-${index}`}
+                    className="px-3 py-2 bg-white border-b-2 border-slate-300 focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
+                    placeholder="Image URL"
+                    value={media}
+                    onChange={(e) => handleMediaChange(e, index)}
+                    // onBlur={handleBlur}
                   />
-                  <button
-                    type="button"
-                    onClick={() => removeMedia(index)}
-                    className="absolute bottom-0 right-0 z-10 rounded-md bg-red-700 p-1 text-xs text-white"
-                  >
-                    Remove
-                  </button>
+                  {media && (
+                    <div className="relative h-24 w-24 rounded-md">
+                      <img
+                        src={media}
+                        alt={`Uploaded Image ${index}`}
+                        className=" flex gap-1 w-28 h-30 rounded object-cover"
+                      />
+                      <button
+                        className="absolute bottom-0 right-0 z-10 rounded-md bg-red-700 p-1 text-xs text-white"
+                        onClick={() => removeMedia(index)}
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  )}
+                  {/* {index > 0 && (
+                    <button
+                      className="text-blue my-3 bg-orange font-Montserrat font-bold focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      onClick={() => removeMedia(index)}
+                    >
+                      Remove
+                    </button>
+                  )} */}
                 </div>
               ))}
-            </div>
-          )}
-
-          <div className="mt-2 w-full">
-            <input
-              type="url"
-              name="media"
-              id="media"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              placeholder="Add valid Image url here"
-              className="block w-full rounded-md border-0 px-2 py-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
-            />
-            <div className="flex justify-end">
-              <button
-                type="button"
-                onClick={pushToMediaArray}
-                className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
-              >
-                Add
-              </button>
+              <div className="flex gap-3 my-4">
+                <button
+                  type="button"
+                  onClick={pushMedia}
+                  className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
+                >
+                  Add Media
+                </button>
+              </div>
             </div>
           </div>
-          {touched.media && errors.media ? (
-            <div className="text-red-600">{errors.media}</div>
-          ) : null}
+
+          {/* {touched.media && errors.media ? (
+            <div className="text-red-500">
+              <p>{errors.media}</p>
+            </div>
+          ) : null} */}
         </div>
+
+        {/* media end */}
+
         <div>
           {/* meta data start */}
           <div className="mt-6">
