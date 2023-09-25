@@ -1,17 +1,23 @@
 import useSingleProfile from "../../hooks/useSingleProfile";
 import retrieveProfileName from "../../helper/retrieveProfileName";
 import DisplayProfile from "./displayUserProfile";
+import LoadingIndicator from "../../components/ui/LoadingIndicator";
+import ErrorMessage from "../../components/ui/ErrorMessage";
 
 const ProfilePage = () => {
   const profileName = retrieveProfileName();
 
   const { singleProfile, isLoading, isError } = useSingleProfile(profileName);
 
-  console.log("singleProfile", singleProfile);
+  if (isLoading)
+    return (
+      <div>
+        <LoadingIndicator />
+      </div>
+    );
 
-  if (isLoading) return <div>Loading...</div>;
-
-  if (isError) return <div>Something went wrong...</div>;
+  if (isError)
+    return <ErrorMessage message="An error occurred while fetching data." />;
 
   return (
     <>
