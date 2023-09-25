@@ -5,6 +5,7 @@ import BookingVenueCard from "../userBookings";
 import VenueCardCretedByHost from "../usersVenues";
 import CreateVenueForm from "../createVenue/CreateVenueForm";
 import noAvatarImage from "/src/assets/images/no-avatar.png";
+import BreadCrumb from "../../../components/ui/Breadcrumb";
 
 const DisplayProfile = ({ profile }) => {
   const { name, avatar, email, venueManager, bookings, venues } = profile;
@@ -12,11 +13,14 @@ const DisplayProfile = ({ profile }) => {
 
   const newAvatar = avatar ? avatar : noAvatarImage;
 
-  console.log("Profile avatar:", avatar);
-  console.log("profile Info:", profile);
+  const paths = [
+    { name: "Home", path: "/" },
+    { name: "Profile", path: "/profile" },
+  ];
 
   return (
     <>
+      <BreadCrumb paths={paths} />
       <div className="container mx-auto px-10 py-10 max-w-2xl bg-white rounded-lg shadow-lg">
         <div className="flex flex-col items-center md:flex-row md:justify-center gap-10 md:space-x-4">
           <img
@@ -37,9 +41,9 @@ const DisplayProfile = ({ profile }) => {
       {/* tab start */}
       <div className="container mx-auto mt-10">
         {venueManager ? (
-          <div className="flex-col md:flex md:flex-row justify-between items-center max-w-sm mx-auto md:max-w-lg px-4 py-4 ">
+          <div className="flex-col md:flex md:flex-row justify-between items-center max-w-sm mx-auto md:max-w-lg px-4 py-4 space-y-2">
             <div
-              className={`border border-blue-500 px-4 py-4 cursor-pointer ${
+              className={`border px-4 py-4 cursor-pointer ${
                 activeTab === "bookings"
                   ? "bg-red-500 text-white"
                   : "bg-white text-red-500 hover:bg-red-100 hover:text-red-700"

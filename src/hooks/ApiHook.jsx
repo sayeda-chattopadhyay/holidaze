@@ -9,19 +9,26 @@ import { useState, useEffect } from "react";
 const ApiHook = (url) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false); // Fetch data from API endpoint
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null); // Fetch data from API endpoint
 
   useEffect(() => {
     async function fetchData() {
       try {
-        setIsError(false);
+        setIsError(false); 
         setIsLoading(true);
         const response = await fetch(url);
+     
+
+        if (!response.ok) {
+          throw new Error("API request failed");
+        }
         const data = await response.json();
         setData(data);
       } catch (error) {
         console.log(error);
         setIsError(true);
+        setErrorMessage(error);
       } finally {
         setIsLoading(false);
       }
@@ -29,7 +36,7 @@ const ApiHook = (url) => {
     fetchData();
   }, [url]);
 
-  return { data, isLoading, isError };
+  return { data, isLoading, isError, errorMessage };
 };
 
 export default ApiHook;

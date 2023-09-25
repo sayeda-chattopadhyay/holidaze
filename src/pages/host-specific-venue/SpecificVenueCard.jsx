@@ -1,3 +1,8 @@
+
+// This is the page that shows the specific venue created by the user (host). 
+//This page also render booking details for the specific venue.
+
+
 import { FaWifi } from "react-icons/fa";
 import { FaUtensils } from "react-icons/fa";
 import { FaPaw } from "react-icons/fa";
@@ -5,9 +10,11 @@ import { FaCar } from "react-icons/fa";
 import { Carousel } from "react-responsive-carousel";
 import NoImage from "/src/assets/images/no-image.jpg";
 import VenueUpdateModal from "./updateVenue/VenueUpdateModal";
+import Breadcrumb from "../../components/ui/Breadcrumb";
 
 const SpecificVenueCard = ({ specificVenue }) => {
-  console.log("specificVenue", specificVenue);
+  console.log("specific Venue created by users:", specificVenue);
+
   const {
     id,
     description,
@@ -21,10 +28,37 @@ const SpecificVenueCard = ({ specificVenue }) => {
     bookings,
     maxGuests,
   } = specificVenue;
-  console.log(specificVenue);
-  console.log(specificVenue.id)
+
+  let paths;
+  if (name) {
+    paths = [
+      { name: "Home", path: "/" },
+      { name: "Profile", path: "/profile" },
+
+      {
+        name: name.length > 15 ? name.substring(0, 15) + ".." : name,
+        path: "/venues/${id}",
+      },
+    ];
+  } else {
+    [
+      { name: "Home", path: "/" },
+      { name: "Profile", path: "/profile" },
+      { name: "Profile", path: "/profile" },
+    ];
+  }
+
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
+
   return (
     <div key={id}>
+      <Breadcrumb paths={paths} />
       <div className="container max-w-5xl mx-auto px-4 py-4">
         <Carousel showStatus={false} showThumbs={false}>
           {media.map((imageUrl, index) => (
@@ -40,8 +74,8 @@ const SpecificVenueCard = ({ specificVenue }) => {
       </div>
 
       {/* details section */}
-      <div className="container mx-auto px-4 py-4 border border-red-600 flex-col md:flex md:flex-row justify-between mt-4">
-        <div className="w-full md:w-2/3 px-4 py-4 border border-red-600">
+      <div className="container mx-auto px-4 py-4 border shadow-sm flex-col md:flex md:flex-row justify-between mt-4">
+        <div className="w-full md:w-2/3 px-4 py-4 border">
           <h2 className="font-bold text-xl mb-2">{name.toUpperCase()}</h2>
           <h6>{price} nok/ night</h6>
           <p className="text-gray-700">Max Guests: {maxGuests}</p>
@@ -91,21 +125,25 @@ const SpecificVenueCard = ({ specificVenue }) => {
             </div>
           </div>
           <div className="flex gap-5">
-            <VenueUpdateModal specificVenue ={specificVenue}/>
+            <VenueUpdateModal specificVenue={specificVenue} />
             <button>Delete</button>
           </div>
         </div>
-{/* 
-        <div className="w-full md:w-1/3 px-4 py-4 border border-red-600">
-          <h2>Booking Details</h2>
-          {bookings && bookings.length > 1 ? (
-            bookings.map((booking) => {
-              <div>{booking} </div>;
-            })
+{/* booking details */}
+        <div className="w-full md:w-1/3 px-4 py-4 border text-center ">
+          <h2 className="font-bold text-xl mb-2  border-b-gray-500">Booking Details</h2>
+          {bookings && bookings.length > 0 ? (
+            bookings.map((booking, index) => (
+              <div key={index} className="mb-4">
+                <p className="font-semibold">Booking {index + 1}</p>
+                <p>Check-In: {formatDate(booking.dateFrom)}</p>
+                <p>Check-Out: {formatDate(booking.dateTo)}</p>
+              </div>
+            ))
           ) : (
-            <div>no bookings</div>
+            <div>No bookings yet</div>
           )}
-        </div> */}
+        </div>
       </div>
     </div>
   );

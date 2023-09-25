@@ -10,7 +10,7 @@ const validationSchema = Yup.object().shape({
     .max(50, "Name must be at most 50 characters")
     .required("Name is required"),
   description: Yup.string()
-    .min(10, "Description must be at least 10 characters")
+    .min(6, "Description must be at least 6 characters")
     .max(500, "Description must be at most 500 characters")
     .required("Description is required"),
   price: Yup.number()
@@ -25,7 +25,7 @@ const validationSchema = Yup.object().shape({
   // .positive("Must be positive")
   // .integer("Must be an integer"),
   // media: Yup.string().url("Must be a valid URL"),
-  media: Yup.array().of(Yup.string().url("Invalid URL")), //problem is here
+  media: Yup.array().of(Yup.string().url("Invalid URL")),
 
   meta: Yup.object().shape({
     wifi: Yup.boolean(),
@@ -387,7 +387,7 @@ const CreateVenueForm = () => {
             ) : null}
           </div>
         </div>
-
+        {/* media start */}
         <div className="py-3 ">
           <div>
             <div className="py-3 flex flex-col justify-center flex-wrap">
@@ -424,14 +424,8 @@ const CreateVenueForm = () => {
                       </button>
                     </div>
                   )}
-                  {/* {index > 0 && (
-                    <button
-                      className="text-blue my-3 bg-orange font-Montserrat font-bold focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                      onClick={() => removeMedia(index)}
-                    >
-                      Remove
-                    </button>
-                  )} */}
+
+                  {/* media ends */}
                 </div>
               ))}
               <div className="flex gap-3 my-4">

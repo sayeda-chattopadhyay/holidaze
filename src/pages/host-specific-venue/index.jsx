@@ -1,6 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useSpecificVenue } from "../../hooks/useSpecificVenue";
 import SpecificVenueCard from "./SpecificVenueCard";
+import LoadingIndicator from "../../components/ui/LoadingIndicator";
+import ErrorMessage from "../../components/ui/ErrorMessage";
+
 
 const HostSpecificVenue = () => {
   const { id } = useParams();
@@ -10,11 +13,11 @@ const HostSpecificVenue = () => {
   console.log("specificVenue:", specificVenue);
 
   if (isLoading || !specificVenue) {
-    return <div>Loading...</div>;
+    return <div><LoadingIndicator/></div>;
   }
 
   if (isError) {
-    return <div>Something went wrong...</div>;
+    return <div><ErrorMessage/></div>;
   }
 
   return (
