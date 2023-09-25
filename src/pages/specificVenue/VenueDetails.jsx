@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 import { FaWifi } from "react-icons/fa";
 import { FaUtensils } from "react-icons/fa";
 import { FaPaw } from "react-icons/fa";
@@ -5,13 +7,7 @@ import { FaCar } from "react-icons/fa";
 import { Carousel } from "react-responsive-carousel";
 import NoImage from "/src/assets/images/no-image.jpg";
 import BookingForm from "./bookingVenue/BookingForm";
-//import Calender from "./bookingVenue/Calender";
-
-// import retrieveProfileName from "../../helper/retrieveProfileName"
-// console.log("retrieveProfileName:", retrieveProfileName)
-
-// const profileName = retrieveProfileName()
-// console.log("profileName:", profileName)
+import { load } from "../../storage/index.mjs";
 
 const VenueDetails = ({ venue }) => {
   const {
@@ -27,6 +23,15 @@ const VenueDetails = ({ venue }) => {
     rating,
   } = venue;
   console.log("venue owner name", venue.owner);
+
+  const token = load("token");
+  const [isUserLoggedIn, setisUserLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (token) {
+      setisUserLoggedIn(true);
+    }
+  }, [token]);
 
   return (
     <div key={id}>
@@ -44,69 +49,6 @@ const VenueDetails = ({ venue }) => {
         </Carousel>
       </div>
 
-      {/* <div className="container mx-auto px-4 py-4 border border-red-600 flex-col md:flex md:flex-row justify-between mt-4">
-        <div className="px-6 py-4 border border-b-gray-200">
-          <h2 className="font-bold text-xl mb-2">{name.toUpperCase()}</h2>
-          <h6>{price} nok/ night</h6>
-          <p className="text-gray-700">Max Guests: {maxGuests}</p>
-          <div>
-            <h2 className="font-bold text-xl mb-2">Description</h2>
-            <p>{description}</p>
-          </div>
-          <div>
-            <h2>Address</h2>
-            <p className="text-gray-700">Address: {location.address}</p>
-            <p className="text-gray-700">City : {location.city}</p>
-            <p className="text-gray-700">Country:{location.country}</p>
-            <p className="text-gray-700">Continent:{location.continent}</p>
-          </div>
-          <div>
-            <h2>Info</h2>
-            <div className="flex gap-6 my-4">
-              {meta.breakfast ? (
-                <div>
-                  <FaUtensils />
-                  <p>Breakfast</p>
-                </div>
-              ) : null}
-
-              {meta.wifi ? (
-                <div>
-                  {" "}
-                  <FaWifi />
-                  <p>Wi fi</p>
-                </div>
-              ) : null}
-
-              {meta.pets ? (
-                <div>
-                  {" "}
-                  <FaPaw />
-                  <p>Pets</p>{" "}
-                </div>
-              ) : null}
-
-              {meta.parking ? (
-                <div>
-                  <FaCar />
-                  <p>Parking</p>
-                </div>
-              ) : null}
-            </div>
-          </div>
-          <div>
-            <h2>Owner Details</h2>
-            <img src={owner.avatar} alt={owner.name} />
-            <p className="text-gray-700"> Name: {owner.name}</p>
-            <p className="text-gray-700">Email: {owner.email}</p>
-          </div>
-        </div>
-        <div className="px-6 py-4 border border-b-gray-200">
-          <h2>calender component</h2>
-          <Calender />
-          <BookingForm price={price} maxGuests={maxGuests} venueId={id} />
-        </div>
-      </div> */}
       <div className="container mx-auto px-4 py-4 border border-red-600 md:flex md:flex-row justify-between mt-4">
         <div className="w-full md:w-1/2 px-6 py-4 border border-b-gray-200">
           <div className="mt-4 ">
@@ -173,9 +115,14 @@ const VenueDetails = ({ venue }) => {
         </div>
 
         <div className="w-full md:w-1/2 px-6 py-4 border border-b-gray-200">
-          <h2 className="font-bold text-xl text-center border-b-4">Book the Venue</h2>
-          {/* <Calendar /> */}
-          <BookingForm price={price} maxGuests={maxGuests} venueId={id} />
+          <h2 className="font-bold text-xl text-center border-b-4">
+            Book the Venue
+          </h2>
+          {isUserLoggedIn ? (
+            <BookingForm price={price} maxGuests={maxGuests} venueId={id} />
+          ) : (
+            <p className="text-center">Please login to book the venue.</p>
+          )}
         </div>
       </div>
     </div>
@@ -183,8 +130,6 @@ const VenueDetails = ({ venue }) => {
 };
 
 export default VenueDetails;
-
-//condition rendering
 
 // import { FaWifi } from "react-icons/fa";
 // import { FaUtensils } from "react-icons/fa";
