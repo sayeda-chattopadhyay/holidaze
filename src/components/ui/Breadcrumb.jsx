@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { BsSlashLg } from "react-icons/bs";
 
 const Breadcrumb = ({ paths }) => (
-  <div className="mx-auto max-w-7xl md:px-12 mt-10">
+  <div className="mx-auto max-w-7xl md:px-12 mt-40 mb-10 ">
     <nav aria-label="max-w-7xl mx-auto">
       <ol className="mb-6 ml-8 flex flex-row">
         {paths.map((path, index) => (
