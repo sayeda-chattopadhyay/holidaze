@@ -1,20 +1,22 @@
 import { useState } from "react";
 import { updateAvatar } from "./updateAvatar.mjs";
+import { useNavigate } from "react-router-dom";
 
 export default function AvatarModal() {
   const [showModal, setShowModal] = useState(false);
   const [avatarUrl, setAvatarUrl] = useState("");
 
+  const navigate = useNavigate();
   console.log(avatarUrl);
 
   const handleUpdadteAvatar = async () => {
     try {
       const newUrl = await updateAvatar(avatarUrl);
       console.log("new url", newUrl);
-      alert("Avatar updated successfully");
+      alert("Avatar updated successfully"); // will add different alert later
       setShowModal(false);
-
-      window.location.reload(); // refresh page
+      navigate("/profile");
+      // window.location.reload(); // refresh page
     } catch (error) {
       console.log(error);
       alert("Something went wrong");
