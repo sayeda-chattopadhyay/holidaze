@@ -24,6 +24,7 @@ const BookingForm = ({ price, maxGuests }) => {
   };
 
   const handleSubmit = async (values) => {
+    
     const bookingFormData = {
       dateFrom: values.dateFrom,
       dateTo: values.dateTo,
