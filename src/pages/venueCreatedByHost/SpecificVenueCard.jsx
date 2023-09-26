@@ -10,12 +10,15 @@ import { Carousel } from "react-responsive-carousel";
 import NoImage from "/src/assets/images/no-image.jpg";
 import VenueUpdateModal from "./updateVenue/VenueUpdateModal";
 import Breadcrumb from "../../components/ui/Breadcrumb";
-//import DeleteVenueConfirmationModal from "./deleteVenue/DeleteVenueConfirmationModal";
-// import { deleteVenue } from "./deleteVenue/DeleteVenueApiCall";
+import { useNavigate } from "react-router-dom";
+
+import { deleteVenue } from "./deleteVenue/DeleteVenueApiCall";
 
 const SpecificVenueCard = ({ specificVenue }) => {
   console.log("specific Venue created by users:", specificVenue);
   //const [showDeleteModal, setShowDeleteModal] = useState(false); //new
+
+  const navigate = useNavigate();
 
   const {
     id,
@@ -58,7 +61,20 @@ const SpecificVenueCard = ({ specificVenue }) => {
     return `${day}/${month}/${year}`;
   }
 
-  //
+  const handleDeleteVenue = async () => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this venue?"
+    );
+
+    if (confirmDelete) {
+      try {
+        await deleteVenue(id);
+        navigate("/profile");
+      } catch (error) {
+        console.error("Error deleting venue:", error);
+      }
+    }
+  };
 
   return (
     <div key={id}>
@@ -131,9 +147,7 @@ const SpecificVenueCard = ({ specificVenue }) => {
           </div>
           <div className="flex gap-5">
             <VenueUpdateModal specificVenue={specificVenue} />
-
-            {/* <button onClick={handleClick}>Delete</button> */}
-            {/* <button>Delete</button> */}
+            <button onClick={handleDeleteVenue}>Delete</button>
           </div>
         </div>
         {/* booking details */}
