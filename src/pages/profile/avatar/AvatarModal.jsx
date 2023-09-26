@@ -15,7 +15,8 @@ export default function AvatarModal() {
       console.log("new url", newUrl);
       alert("Avatar updated successfully"); // will add different alert later
       setShowModal(false);
-      navigate("/profile");
+      window.location.reload();
+      // navigate("/profile");
       // window.location.reload(); // refresh page
     } catch (error) {
       console.log(error);
