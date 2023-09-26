@@ -2,6 +2,9 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
 import { updateVenue } from "./updateVenue.mjs";
+import { BsXCircleFill } from "react-icons/bs";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -56,7 +59,7 @@ const validationSchema = Yup.object().shape({
 const UpdateVenueForm = ({ specificVenue, closeModal }) => {
   // const [updatedVenue, setUpdatedVenue] = useState(null);
   const [mediaArray, setMediaArray] = useState(specificVenue?.media || []);
-  const [errorMessage, setErrorMessage] = useState(null);
+  //const [errorMessage, setErrorMessage] = useState(null);
   // const [successMessage, setSuccessMessage] = useState(null);
 
   const id = specificVenue.id;
@@ -115,20 +118,28 @@ const UpdateVenueForm = ({ specificVenue, closeModal }) => {
         },
       };
       try {
-        // const updatedVenueData = await updateVenue(formData, id);
-        // setUpdatedVenue(updatedVenueData);
-        await updateVenue(formData, id);
-        // setSuccessMessage("Venue updated successfully");
+        const response = await updateVenue(formData, id);
+
+        if (response) {
+          toast.success("Update Successful!", {
+            position: "bottom-center",
+            autoClose: 1000,
+          });
+
+       
         setTimeout(() => {
           closeModal();
           window.location.reload();
         }, 2000);
 
-        // action.resetForm();
-        // setMediaArray([]);
-      } catch (error) {
-        console.log("error", error);
-        setErrorMessage(error);
+      } else {
+        throw new Error("Updating failed");
+      }
+      }catch (error) {
+        toast.error("Booking failed. Please try again later.", {
+          position: "bottom-center",
+          autoClose: 2000, // Close toast after 5 seconds
+        });
       }
 
       console.log("UpdateformData", formData);
@@ -176,6 +187,7 @@ const UpdateVenueForm = ({ specificVenue, closeModal }) => {
               onBlur={handleBlur}
               value={values.name}
             />
+            
             {touched.name && errors.name ? (
               <div className="text-red-500 text-sm">{errors.name}</div>
             ) : null}
@@ -404,20 +416,21 @@ const UpdateVenueForm = ({ specificVenue, closeModal }) => {
                 htmlFor="media"
                 className="block uppercase tracking-wide text-xs font-bold mb-2"
               >
-                Add Media
+                Add Images
               </label>
 
               {mediaArray.map((media, index) => (
-                <div key={index}>
+                <div key={index} className="mb-10">
                   <input
                     type="url"
                     name={`media-${index}`}
                     className="px-3 py-2 bg-white border-b-2 border-slate-300 focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
-                    placeholder="Image URL"
+                    placeholder="Please provide valid image URL if you want to add a new media"
                     value={media}
                     onChange={(e) => handleMediaChange(e, index)}
                     onBlur={handleBlur}
                   />
+                  
                   {media && (
                     <div className="relative h-24 w-24 rounded-md">
                       <img
@@ -559,6 +572,7 @@ const UpdateVenueForm = ({ specificVenue, closeModal }) => {
             Update Venue
           </button>
         </div>
+        <ToastContainer />
       </form>
     </div>
   );
