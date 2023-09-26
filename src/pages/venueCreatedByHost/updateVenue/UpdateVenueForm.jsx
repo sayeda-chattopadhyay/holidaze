@@ -126,16 +126,14 @@ const UpdateVenueForm = ({ specificVenue, closeModal }) => {
             autoClose: 1000,
           });
 
-       
-        setTimeout(() => {
-          closeModal();
-          window.location.reload();
-        }, 2000);
-
-      } else {
-        throw new Error("Updating failed");
-      }
-      }catch (error) {
+          setTimeout(() => {
+            closeModal();
+            window.location.reload();
+          }, 2000);
+        } else {
+          throw new Error("Updating failed");
+        }
+      } catch (error) {
         toast.error("Booking failed. Please try again later.", {
           position: "bottom-center",
           autoClose: 2000, // Close toast after 5 seconds
@@ -187,7 +185,7 @@ const UpdateVenueForm = ({ specificVenue, closeModal }) => {
               onBlur={handleBlur}
               value={values.name}
             />
-            
+
             {touched.name && errors.name ? (
               <div className="text-red-500 text-sm">{errors.name}</div>
             ) : null}
@@ -401,6 +399,7 @@ const UpdateVenueForm = ({ specificVenue, closeModal }) => {
               onBlur={handleBlur}
               value={values.maxGuests}
             />
+
             {touched.maxGuests && errors.maxGuests ? (
               <div className="text-red-500 text-sm">{errors.maxGuests}</div>
             ) : null}
@@ -430,7 +429,7 @@ const UpdateVenueForm = ({ specificVenue, closeModal }) => {
                     onChange={(e) => handleMediaChange(e, index)}
                     onBlur={handleBlur}
                   />
-                  
+
                   {media && (
                     <div className="relative h-24 w-24 rounded-md">
                       <img
@@ -458,6 +457,7 @@ const UpdateVenueForm = ({ specificVenue, closeModal }) => {
                 >
                   Add Media
                 </button>
+                {/* <button type="button" onClick={cancelUpdate}>Cancel</button> */}
               </div>
             </div>
           </div>
