@@ -4,15 +4,15 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 const BaseLayOut = () => {
-    return (
-      <div>
-        <Header />
-        <main>
-          <Outlet />
-        </main>
-        <Footer />
-      </div>
-    );
-  };
-  
-  export default BaseLayOut;
+  return (
+    <div>
+      <Header />
+      <main>
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+export default BaseLayOut;

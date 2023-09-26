@@ -1,9 +1,9 @@
 import Navbar from "./Navbar";
+// import Logo from "./Logo";
 
 const Header = () => {
   return (
     <>
-      <h1>Header</h1>
       <Navbar />
     </>
   );

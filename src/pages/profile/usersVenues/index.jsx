@@ -12,6 +12,8 @@ import { Link } from "react-router-dom";
 function VenueCardCretedByHost({ userVenue }) {
   const { id, name, created, location, maxGuests, media, price } = userVenue;
 
+  console.log("venue Created By User:", userVenue);
+
   function formatDate(dateString) {
     const date = new Date(dateString);
     const day = date.getDate().toString().padStart(2, "0");
@@ -23,9 +25,7 @@ function VenueCardCretedByHost({ userVenue }) {
   return (
     <div className="container mx-auto px-10 py-10 max-w-2xl bg-gray-100 rounded-lg shadow-lg mt-10">
       <div className="container px-4 py-4">
-        <div
-          className="conatainer max-w-xl mx-auto bg-white px-2 py-2 rounded-lg overflow-hidden shadow-md md:flex md:flex-row md:gap-10 justify-between items-center"
-        >
+        <div className="conatainer max-w-xl mx-auto bg-white px-2 py-2 rounded-lg overflow-hidden shadow-md md:flex md:flex-row md:gap-10 justify-between items-center">
           {media && media.length > 1 ? (
             <Carousel
               showThumbs={false}
@@ -121,7 +121,7 @@ function VenueCardCretedByHost({ userVenue }) {
             </div>
 
             <Link
-              to={`/host-specific-venue/${id}`}
+              to={`/venueCreatedByHost/${id}`}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
             >
               View More

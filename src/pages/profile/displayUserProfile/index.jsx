@@ -11,6 +11,10 @@ const DisplayProfile = ({ profile }) => {
   const { name, avatar, email, venueManager, bookings, venues } = profile;
   const [activeTab, setActiveTab] = useState("bookings");
 
+
+  console.log("profile:", profile);
+  console.log("bookings by profile:", bookings);
+
   const newAvatar = avatar ? avatar : noAvatarImage;
 
   const paths = [
@@ -96,7 +100,7 @@ const DisplayProfile = ({ profile }) => {
           </div>
         )}
         {/* tab end */}
-        {/* render booking, rented venue, create venue form */}
+        {/* render booking, rented venues, create venue form */}
         {activeTab === "bookings" && (
           <div className="container mx-auto px-10 py-10 max-w-2xl bg-gray-100 rounded-lg shadow-lg mt-10">
             <h1 className="text-center text-xl md:text-2xl bg-gray-200 py-2 rounded-lg">

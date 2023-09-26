@@ -1,6 +1,6 @@
-import HeroBanner from "./banner";
-//import SearchSection from "./searchSection";
-//import AllVenues from "../venues/AllVenues";
+ import HeroBanner from "./banner";
+// import SearchSection from "./searchSection";
+import AllVenues from "../venues/AllVenues";
 import SellingPoints from "./sellingPoint";
 import BecomeAHost from "./becomeHost";
 
@@ -10,7 +10,7 @@ const HomePage = () => {
       <div>
         <HeroBanner />
         {/* <SearchSection /> */}
-        {/* <AllVenues /> */}
+        <AllVenues />s
         <SellingPoints />
         <BecomeAHost />
       </div>

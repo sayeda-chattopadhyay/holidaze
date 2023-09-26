@@ -1,5 +1,5 @@
-
-import HostImage from "/src/assets/images/become-host.jpg"; 
+import HostImage from "/src/assets/images/become-host.jpg";
+// import HostImage from "/src/assets/images/no-image.jpg";
 
 const BecomeAHost = () => {
   return (
