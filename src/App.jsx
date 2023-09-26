@@ -10,7 +10,8 @@ import VenuesPage from "./pages/venues";
 import SpecificVenue from "./pages/specificVenue";
 import ProfilePage from "./pages/profile";
 import ErrorPage from "./pages/notFoundPage";
-import HostSpecificVenue from "./pages/host-specific-venue";
+import HostSpecificVenue from "./pages/venueCreatedByHost";
+//import BookedVenueCard from "./pages/venueBookedByUser";
 
 // layouts
 
@@ -38,7 +39,11 @@ function App() {
           <Route path="/venues" element={<VenuesPage />} />
           <Route path="/venues/:id" element={<SpecificVenue />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/host-specific-venue/:id" element={<HostSpecificVenue />} />
+          <Route
+            path="/venueCreatedByHost/:id"
+            element={<HostSpecificVenue />}
+          />
+          {/* <Route path="/venueBookedByUser/:id" element={<BookedVenueCard />} /> */}
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
