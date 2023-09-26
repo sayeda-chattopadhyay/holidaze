@@ -1,9 +1,12 @@
-
+import Navbar from "./Navbar";
+// import Logo from "./Logo";
 
 const Header = () => {
   return (
-    <div>Header</div>
-  )
-}
+    <>
+      <Navbar />
+    </>
+  );
+};
 
-export default Header
+export default Header;
