@@ -1,12 +1,13 @@
-
 import { useEffect, useState } from "react";
 import { VENUES_URL } from "../../constants";
 
 export function useSpecificVenue(id) {
-  const url = `${VENUES_URL}/${id}?_bookings=true `;
+  const url = `${VENUES_URL}/${id}?_bookings=true&_customer=true `;
   const [specificVenue, setSpecificVenue] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+
+  
 
   async function getSpecificVenue(url) {
     try {
