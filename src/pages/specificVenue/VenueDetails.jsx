@@ -4,6 +4,7 @@ import { FaUtensils } from "react-icons/fa";
 import { FaPaw } from "react-icons/fa";
 import { FaCar } from "react-icons/fa";
 import { Carousel } from "react-responsive-carousel";
+
 import NoImage from "/src/assets/images/no-image.jpg";
 import BookingForm from "./bookingVenue/BookingForm";
 import { load } from "../../storage/index.mjs";
