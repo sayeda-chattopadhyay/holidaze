@@ -1,6 +1,7 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { createVenue } from "./createVenue";
 
@@ -63,6 +64,8 @@ const CreateVenueForm = () => {
 
   console.log("mediaArray:", mediaArray);
 
+  const navigate = useNavigate();
+
   const {
     values,
     handleBlur,
@@ -122,8 +125,8 @@ const CreateVenueForm = () => {
 
         // success message
         setTimeout(() => {
-          window.location.reload();
-        }, 2000);
+          navigate("/profile");
+        }, 1000);
 
         action.resetForm();
 
