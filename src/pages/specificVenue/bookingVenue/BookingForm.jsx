@@ -7,14 +7,17 @@ import { createBooking } from "./createBookingApiCall";
 import { useParams, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useSpecificVenue from "../../../hooks/useSpecificVenue";
 
 const BookingForm = ({ price, maxGuests }) => {
   const [totalAmount, setTotalAmount] = useState(0);
   const [totalDays, setTotalDays] = useState(0);
-
   const { id } = useParams();
-
   const navigate = useNavigate();
+
+  const { specificVenue } = useSpecificVenue(id);
+
+  console.log("specificVenue: ", specificVenue);
 
   const initialValues = {
     dateFrom: null,
@@ -23,8 +26,15 @@ const BookingForm = ({ price, maxGuests }) => {
     venueId: id,
   };
 
+  // Extract booking dates from specificVenue
+  const bookingDates = specificVenue?.bookings?.map((booking) => {
+    return new Date(booking.dateFrom);
+  });
+
+  // Set up disabled dates for DatePicker
+  const disabledDates = bookingDates || [];
+
   const handleSubmit = async (values) => {
-    
     const bookingFormData = {
       dateFrom: values.dateFrom,
       dateTo: values.dateTo,
@@ -58,7 +68,7 @@ const BookingForm = ({ price, maxGuests }) => {
     } catch (error) {
       toast.error("Booking failed. Please try again later.", {
         position: "bottom-center",
-        autoClose: 2000, // Close toast after 5 seconds
+        autoClose: 2000,
       });
     }
   };
@@ -124,6 +134,7 @@ const BookingForm = ({ price, maxGuests }) => {
             minDate={new Date()}
             isClearable={true}
             className="border border-red-800 px-4 py-2 rounded w-full"
+            excludeDates={disabledDates}
           />
           {formik.errors.dateFrom && formik.touched.dateFrom && (
             <div className="text-red-500 mt-2">{formik.errors.dateFrom}</div>
@@ -150,6 +161,7 @@ const BookingForm = ({ price, maxGuests }) => {
             minDate={new Date()}
             isClearable={true}
             className="border border-red-800 px-4 py-2 rounded w-full"
+            excludeDates={disabledDates}
           />
           {formik.errors.dateTo && formik.touched.dateTo && (
             <div className="text-red-500 mt-2">{formik.errors.dateTo}</div>
