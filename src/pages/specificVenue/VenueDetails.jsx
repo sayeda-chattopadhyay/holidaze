@@ -22,11 +22,12 @@ const VenueDetails = ({ venue }) => {
     meta,
     owner,
     rating,
+    bookings,
   } = venue;
-  console.log("venue owner name", venue.owner);
 
   const token = load("token");
   const [isUserLoggedIn, setisUserLoggedIn] = useState(false);
+  //const [bookingArray, setBookingArray] = useState(venue.bookings); // conditionally render booking details
 
   useEffect(() => {
     if (token) {
@@ -50,6 +51,14 @@ const VenueDetails = ({ venue }) => {
       { name: "Venues", path: "/venues" },
       { name: "Venue Details", path: `/venues/${id}` },
     ];
+  }
+
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
   }
 
   return (
@@ -133,6 +142,25 @@ const VenueDetails = ({ venue }) => {
             </div>
           </div>
         </div>
+        {/* temporary codeto get booking details dateFrom and dateTo*/}
+        <div className="w-full md:w-1/2 px-6 py-4 border border-b-gray-200">
+          <h2 className="font-bold text-xl text-center border-b-4">
+            Booking Details
+          </h2>
+          {bookings && bookings.length > 0 ? (
+            bookings.map((booking, index) => (
+              <div key={index} className="mb-4">
+                <p className="font-semibold">Booking {index + 1}</p>
+                <p>Check-In: {formatDate(booking.dateFrom)}</p>
+                <p>Check-Out: {formatDate(booking.dateTo)}</p>
+              </div>
+            ))
+          ) : (
+            <div>No bookings yet</div>
+          )}
+        </div>
+
+        {/* end of temporary code to get booking details dateFrom and dateTo*/}
 
         <div className="w-full md:w-1/2 px-6 py-4 border border-b-gray-200">
           <h2 className="font-bold text-xl text-center border-b-4">
