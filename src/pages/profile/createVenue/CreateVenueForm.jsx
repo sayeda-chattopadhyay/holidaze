@@ -2,8 +2,9 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { createVenue } from "./createVenue";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -60,7 +61,7 @@ const validationSchema = Yup.object().shape({
 
 const CreateVenueForm = () => {
   const [mediaArray, setMediaArray] = useState([]);
-  const [errorMessage, setErrorMessage] = useState(null);
+  // const [errorMessage, setErrorMessage] = useState(null);
 
   console.log("mediaArray:", mediaArray);
 
@@ -96,7 +97,7 @@ const CreateVenueForm = () => {
       },
     },
 
-    onSubmit: async (values, action) => {
+    onSubmit: async (values) => {
       console.log("Form submitted with values:", values);
 
       const formData = {
@@ -121,23 +122,27 @@ const CreateVenueForm = () => {
         },
       };
       try {
-        await createVenue(formData);
+        const response = await createVenue(formData);
 
-        // success message
-        setTimeout(() => {
-          navigate("/profile");
-        }, 1000);
+        if (response) {
+          toast.success("Successfully creating venue!", {
+            position: "bottom-center",
+            autoClose: 1000,
+          });
+          navigate("/profile", { replace: true });
 
-        action.resetForm();
-
-        // setMediaArray([]);  // change for sometimes
-        // reset media array
+          // setTimeout(() => {
+          //   navigate("/profile");
+          // }, 2000);
+        } else {
+          throw new Error("creating venue failed");
+        }
       } catch (error) {
-        console.log("error", error);
-        setErrorMessage(error);
+        toast.error("creating new venue failed. Please try again later.", {
+          position: "bottom-center",
+          autoClose: 2000,
+        });
       }
-
-      console.log("formData", formData);
     },
     validationSchema,
   });
@@ -160,7 +165,7 @@ const CreateVenueForm = () => {
   return (
     <div className="container px-4 py-4 border border-red-600">
       <h1>Create Venue</h1>
-      {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+      {/* {errorMessage && <p className="text-red-500">{errorMessage}</p>} */}
       <form className="space-y-6" onSubmit={handleSubmit}>
         <div>
           <label
@@ -554,6 +559,7 @@ const CreateVenueForm = () => {
             Create Venue
           </button>
         </div>
+        <ToastContainer />
       </form>
     </div>
   );
