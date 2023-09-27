@@ -1,7 +1,6 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { FaEdit, FaMapMarkerAlt } from "react-icons/fa";
-import { ImBin } from "react-icons/im";
+import { FaMapMarkerAlt } from "react-icons/fa";
 import { BsPeopleFill } from "react-icons/bs";
 import { RiMoneyPoundCircleFill } from "react-icons/ri";
 import { FaCalendar } from "react-icons/fa";
@@ -96,12 +95,7 @@ function VenueCardCretedByHost({ userVenue }) {
           <div className="p-4 md:w-1/2">
             <div className="flex items-start justify-between">
               <h2 className="font-semibold mb-2">{name}</h2>
-              <div className="flex gap-4">
-                <FaEdit />
-                <ImBin />
-              </div>
             </div>
-
             <div className="flex items-center gap-4 text-sm mb-2 text-gray-600">
               <FaMapMarkerAlt />
               {location.city}, {location.country}
