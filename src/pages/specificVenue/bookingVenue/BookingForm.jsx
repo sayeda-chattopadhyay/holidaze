@@ -8,7 +8,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useSpecificVenue from "../../../hooks/useSpecificVenue";
-import { format } from "date-fns";
+
+import { format, addDays, isBefore } from "date-fns";
 
 const BookingForm = ({ price, maxGuests }) => {
   const [totalAmount, setTotalAmount] = useState(0);
@@ -27,18 +28,41 @@ const BookingForm = ({ price, maxGuests }) => {
     venueId: id,
   };
 
+  const bookingDates = specificVenue?.bookings?.flatMap((booking) => {
+    const dateFrom = new Date(booking.dateFrom);
+
+    let currentDate = dateFrom;
+
+    const dateTo = new Date(booking.dateTo);
+
+    const dates = [];
+
+    while (
+      isBefore(currentDate, dateTo) ||
+      currentDate.getTime() === dateTo.getTime()
+    ) {
+      const formattedDate = format(currentDate, "dd MMMM yyyy");
+
+      dates.push(new Date(formattedDate));
+
+      currentDate = addDays(currentDate, 1); // Move to the next day
+    }
+
+    return dates;
+  });
+
   // Extract booking dates from specificVenue
   // const bookingDates = specificVenue?.bookings?.map((booking) => {
   //   return new Date(booking.dateFrom);
   // });
 
-  const bookingDates = specificVenue?.bookings?.map((booking) => {
-    const date = new Date(booking.dateFrom);
+  // const bookingDates = specificVenue?.bookings?.map((booking) => {
+  //   const date = new Date(booking.dateFrom);
 
-    const formattedDate = format(date, "dd MMMM yyyy");
+  //   const formattedDate = format(date, "dd MMMM yyyy");
 
-    return new Date(formattedDate);
-  });
+  //   return new Date(formattedDate);
+  // });
 
   // Set up disabled dates for DatePicker
   const disabledDates = bookingDates || [];
