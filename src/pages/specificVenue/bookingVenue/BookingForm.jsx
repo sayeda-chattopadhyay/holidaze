@@ -8,6 +8,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useSpecificVenue from "../../../hooks/useSpecificVenue";
+import { format } from "date-fns";
 
 const BookingForm = ({ price, maxGuests }) => {
   const [totalAmount, setTotalAmount] = useState(0);
@@ -27,8 +28,16 @@ const BookingForm = ({ price, maxGuests }) => {
   };
 
   // Extract booking dates from specificVenue
+  // const bookingDates = specificVenue?.bookings?.map((booking) => {
+  //   return new Date(booking.dateFrom);
+  // });
+
   const bookingDates = specificVenue?.bookings?.map((booking) => {
-    return new Date(booking.dateFrom);
+    const date = new Date(booking.dateFrom);
+
+    const formattedDate = format(date, "dd MMMM yyyy");
+
+    return new Date(formattedDate);
   });
 
   // Set up disabled dates for DatePicker
