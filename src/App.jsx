@@ -20,33 +20,29 @@ import BaseLayout from "./components/layouts/BaseLayout";
 // Auth
 
 import { AuthProvider } from "./context/AuthProvider";
-
-// function requireAuth(component) {
-//   const accessToken = localStorage.getItem("token");
-//   const loggedIn = Boolean(accessToken);
-
-//   return loggedIn ? component : <Navigate to="/login" />;
-// }
+import { VenueProvider } from "./context/VenueProvider";
 
 function App() {
   return (
     <AuthProvider>
-      <Routes>
-        <Route path="/" element={<BaseLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="/logIn" element={<LoginPage />} />
-          <Route path="/signUp" element={<SignUpPage />} />
-          <Route path="/venues" element={<VenuesPage />} />
-          <Route path="/venues/:id" element={<SpecificVenue />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route
-            path="/venueCreatedByHost/:id"
-            element={<HostSpecificVenue />}
-          />
-          {/* <Route path="/venueBookedByUser/:id" element={<BookedVenueCard />} /> */}
-          <Route path="*" element={<ErrorPage />} />
-        </Route>
-      </Routes>
+      <VenueProvider>
+        <Routes>
+          <Route path="/" element={<BaseLayout />}>
+            <Route index element={<HomePage />} />
+            <Route path="/logIn" element={<LoginPage />} />
+            <Route path="/signUp" element={<SignUpPage />} />
+            <Route path="/venues" element={<VenuesPage />} />
+            <Route path="/venues/:id" element={<SpecificVenue />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route
+              path="/venueCreatedByHost/:id"
+              element={<HostSpecificVenue />}
+            />
+            {/* <Route path="/venueBookedByUser/:id" element={<BookedVenueCard />} /> */}
+            <Route path="*" element={<ErrorPage />} />
+          </Route>
+        </Routes>
+      </VenueProvider>
     </AuthProvider>
   );
 }

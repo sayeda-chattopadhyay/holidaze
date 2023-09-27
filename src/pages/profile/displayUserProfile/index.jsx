@@ -2,15 +2,20 @@ import PropTypes from "prop-types";
 import AvatarModal from "../avatar/AvatarModal";
 import { useState } from "react";
 import BookingVenueCard from "../userBookings";
-import VenueCardCretedByHost from "../usersVenues";
+//import VenueCardCretedByHost from "../usersVenue";
+import UserVenues from "../userVenues";
 import CreateVenueForm from "../createVenue/CreateVenueForm";
 import noAvatarImage from "/src/assets/images/no-avatar.png";
 import BreadCrumb from "../../../components/ui/Breadcrumb";
+import { useVenues } from "../../../context/useVenues";
 
 const DisplayProfile = ({ profile }) => {
   const { name, avatar, email, venueManager, bookings, venues } = profile;
   const [activeTab, setActiveTab] = useState("bookings");
 
+  const { setAllVenues } = useVenues();
+
+  setAllVenues(venues);
 
   console.log("profile:", profile);
   console.log("bookings by profile:", bookings);
@@ -120,7 +125,8 @@ const DisplayProfile = ({ profile }) => {
             <h1 className="text-center text-xl md:text-2xl bg-gray-200 py-2 rounded-lg">
               All venues created by {name}
             </h1>
-            {venues && venues.length > 0 ? (
+            <UserVenues />
+            {/* {venues && venues.length > 0 ? (
               venues.map((userVenue) => (
                 <VenueCardCretedByHost
                   key={userVenue.id}
@@ -129,7 +135,7 @@ const DisplayProfile = ({ profile }) => {
               ))
             ) : (
               <p>No Venues created by you</p>
-            )}
+            )} */}
           </div>
         )}
         {activeTab === "createVenue" && (

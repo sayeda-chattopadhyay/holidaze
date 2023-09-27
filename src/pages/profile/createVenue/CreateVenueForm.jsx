@@ -1,10 +1,11 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import { createVenue } from "./createVenue";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useVenues } from "../../../context/useVenues";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -63,9 +64,11 @@ const CreateVenueForm = () => {
   const [mediaArray, setMediaArray] = useState([]);
   // const [errorMessage, setErrorMessage] = useState(null);
 
+  const { addVenue } = useVenues();
+
   console.log("mediaArray:", mediaArray);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const {
     values,
@@ -97,7 +100,7 @@ const CreateVenueForm = () => {
       },
     },
 
-    onSubmit: async (values) => {
+    onSubmit: async (values, action) => {
       console.log("Form submitted with values:", values);
 
       const formData = {
@@ -125,15 +128,22 @@ const CreateVenueForm = () => {
         const response = await createVenue(formData);
 
         if (response) {
-          toast.success("Successfully creating venue!", {
-            position: "bottom-center",
-            autoClose: 1000,
-          });
-          navigate("/profile", { replace: true });
+          toast.success(
+            "Successfully creating venue! Please check on your rented venue tab",
+            {
+              position: "bottom-center",
+              autoClose: 5000,
+            }
+          );
 
-          // setTimeout(() => {
-          //   navigate("/profile");
-          // }, 2000);
+          console.log("response after creating venue:", response);
+
+          addVenue(response);
+
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+          action.resetForm();
         } else {
           throw new Error("creating venue failed");
         }
