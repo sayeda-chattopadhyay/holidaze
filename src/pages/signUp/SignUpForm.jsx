@@ -208,7 +208,7 @@ const SignUpForm = () => {
               <p>Do you want to rent out an accommodation??</p>
               <div>
                 <input
-                  checked={formik.values.venueManager}
+                  // checked={formik.values.venueManager}
                   onChange={() => {
                     formik.setFieldValue("venueManager", true);
                   }}
@@ -222,7 +222,7 @@ const SignUpForm = () => {
               </div>
               <div>
                 <input
-                  checked={!formik.values.venueManager}
+                  // checked={!formik.values.venueManager}
                   onChange={() => {
                     formik.setFieldValue("venueManager", false);
                   }}
