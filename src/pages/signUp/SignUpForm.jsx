@@ -9,7 +9,6 @@ import LoadingIndicator from "../../components/ui/LoadingIndicator";
 
 const emailNoroffRegex = /^[A-Z0-9._%+-]+@stud.noroff\.no$/i;
 
-
 const validationSchema = Yup.object({
   name: Yup.string()
     .min(3, "your name should be at least 3 character")
@@ -88,9 +87,8 @@ const SignUpForm = () => {
 
   return (
     <>
-      {isLoading && <LoadingIndicator/>}
-
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-6 lg:px-8 bg-white shadow-md rounded-lg overflow-hidden mx-auto max-w-xl mt-10">
+        {isLoading && <LoadingIndicator />}
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Sign Up
         </h2>
