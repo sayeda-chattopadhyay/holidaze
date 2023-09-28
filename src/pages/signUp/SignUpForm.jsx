@@ -1,11 +1,14 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import { useState } from "react";
+import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { signUp } from "../../api/auth/signup.mjs";
+import LoadingIndicator from "../../components/ui/LoadingIndicator";
+
 const emailNoroffRegex = /^[A-Z0-9._%+-]+@stud.noroff\.no$/i;
+
 
 const validationSchema = Yup.object({
   name: Yup.string()
@@ -23,6 +26,10 @@ const validationSchema = Yup.object({
 });
 
 const SignUpForm = () => {
+  // const [errorMessage, setErrorMessage] = useState(null);
+  //  const [successMessage, setSuccessMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -45,6 +52,7 @@ const SignUpForm = () => {
       };
 
       try {
+        setIsLoading(true);
         const response = await signUp(formData);
         console.log("Api response to sign up:", response);
 
@@ -68,7 +76,9 @@ const SignUpForm = () => {
           className: "toast-error",
           autoClose: 2000,
         });
+        setIsLoading(false);
       } finally {
+        setIsLoading(false);
         action.resetForm(); // Reset form after submission
       }
     },
@@ -78,6 +88,8 @@ const SignUpForm = () => {
 
   return (
     <>
+      {isLoading && <LoadingIndicator/>}
+
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-6 lg:px-8 bg-white shadow-md rounded-lg overflow-hidden mx-auto max-w-xl mt-10">
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Sign Up

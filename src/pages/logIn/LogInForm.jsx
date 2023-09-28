@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useLogin } from "../../api/auth/login.jsx";
+import LoadingIndicator from "../../components/ui/LoadingIndicator";
+//import { set } from "date-fns";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -15,6 +17,8 @@ const LogInForm = () => {
   const { logIn } = useLogin();
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState(null);
+  // const [successMessage, setSuccessMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false); // add success message
 
   const formik = useFormik({
     initialValues: {
@@ -29,29 +33,24 @@ const LogInForm = () => {
       };
 
       try {
-        // Disable the submit button and show loading while waiting for the response
+        setErrorMessage(null);
+        setIsLoading(true);
         actions.setSubmitting(true);
-
-        // Call the login API
         await logIn(credentials);
-
-        // Redirect to the profile page on successful login
+        // setSuccessMessage("You have successfully logged in!");
         navigate("/profile");
       } catch (error) {
-        // Handle login errors, display an error message, or enable the button for a retry
-        console.error("Login error:", error);
         setErrorMessage(error.message);
-        // You might want to notify the user of the error, e.g., set an error state.
+        setIsLoading(false);
       } finally {
-        // Re-enable the submit button and reset the form
         actions.setSubmitting(false);
-        // actions.resetForm();
       }
     },
   });
 
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      {isLoading && <LoadingIndicator />}
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <img
           className="mx-auto h-10 w-auto"
@@ -143,4 +142,3 @@ const LogInForm = () => {
 };
 
 export default LogInForm;
-
