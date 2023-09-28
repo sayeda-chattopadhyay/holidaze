@@ -63,9 +63,9 @@ const SignUpForm = () => {
               className: "toast-success",
               autoClose: 2000,
             };
-
+          action.resetForm();
           setTimeout(() => {
-            navigate("/login"); // Redirect to login page
+            navigate("/login"); 
           }, 2000);
         } else {
           throw new Error("Registration failed.");
@@ -78,7 +78,6 @@ const SignUpForm = () => {
         setIsLoading(false);
       } finally {
         setIsLoading(false);
-        action.resetForm(); // Reset form after submission
       }
     },
 
