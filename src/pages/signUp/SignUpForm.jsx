@@ -1,11 +1,10 @@
 import { NavLink, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { signUp } from "../../api/auth/signup.mjs";
-
-// RegEx values
-
 const emailNoroffRegex = /^[A-Z0-9._%+-]+@stud.noroff\.no$/i;
 
 const validationSchema = Yup.object({
@@ -25,7 +24,6 @@ const validationSchema = Yup.object({
 
 const SignUpForm = () => {
   const navigate = useNavigate();
-  // const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -36,7 +34,7 @@ const SignUpForm = () => {
       venueManager: false, // false
     },
 
-    onSubmit: (values, action) => {
+    onSubmit: async (values, action) => {
       //remove async kyeword
       const formData = {
         name: values.name,
@@ -46,44 +44,40 @@ const SignUpForm = () => {
         venueManager: values.venueManager,
       };
 
-      signUp(formData);
-      action.resetForm();
+      try {
+        const response = await signUp(formData);
+        console.log("Api response to sign up:", response);
 
-      console.log("Form data:", formData);
+        if (response) {
+          toast.success(
+            "Registration successful! You will be redirected to the login page."
+          ),
+            {
+              className: "toast-success",
+              autoClose: 2000,
+            };
 
-      setTimeout(() => {
-        navigate("/login"); // Redirect to login page
-      }, 2000);
-
-      // try {
-      //   const response = await signUp(formData);
-      //   console.log("Api response:", response);
-      //   if (response.success) {
-      //     setRegistrationSuccess(true);
-      //     console.log("Registration success:", registrationSuccess);
-
-      //     setTimeout(() => {
-      //       navigate("/login"); // Redirect to login page
-      //     }, 2000); // Redirect after 2 seconds (adjust as needed)
-      //   }
-      // } catch (error) {
-      //   console.log("Registration error:", error);
-      // }
+          setTimeout(() => {
+            navigate("/login"); // Redirect to login page
+          }, 2000);
+        } else {
+          throw new Error("Registration failed.");
+        }
+      } catch (error) {
+        toast.error("Registration failed!", {
+          className: "toast-error",
+          autoClose: 2000,
+        });
+      } finally {
+        action.resetForm(); // Reset form after submission
+      }
     },
 
     validationSchema,
   });
-  console.log("Formik error : ", formik.errors);
-  console.log("Formik touched: ", formik.touched);
-  console.log("Formik values: ", formik.values);
 
   return (
     <>
-      {/* {registrationSuccess && (
-        <div className="text-green-500 text-sm mb-4 mt-20">
-          Registration successful! You will be redirected to the login page.
-        </div>
-      )} */}
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
@@ -208,21 +202,9 @@ const SignUpForm = () => {
             </div>
 
             <p>How do you like to register ?</p>
-
-            {/* field set start*/}
             <fieldset className="flex flex-col gap-4 md:flex-row md:gap-12">
               <p>Do you want to rent out an accommodation??</p>
               <div>
-                {/* <input
-                  value={true}
-                  defaultChecked={formik.values.venueManager === true}
-                  onChange={() => {
-                    formik.setFieldValue("venueManager", true);
-                  }}
-                  type="radio"
-                  id="yes"
-                  name="venueManager"
-                /> */}
                 <input
                   checked={formik.values.venueManager}
                   onChange={() => {
@@ -237,16 +219,6 @@ const SignUpForm = () => {
                 </label>
               </div>
               <div>
-                {/* <input
-                  value={false}
-                  defaultChecked={formik.values.venueManager === false}
-                  onChange={() => {
-                    formik.setFieldValue("venueManager", false);
-                  }}
-                  type="radio"
-                  id="no"
-                  name="venueManager"
-                /> */}
                 <input
                   checked={!formik.values.venueManager}
                   onChange={() => {
@@ -261,9 +233,6 @@ const SignUpForm = () => {
                 </label>
               </div>
             </fieldset>
-            {/* field set end */}
-            {/* submit button */}
-
             <div>
               <button
                 type="submit"
@@ -273,7 +242,7 @@ const SignUpForm = () => {
               </button>
             </div>
           </form>
-
+          <ToastContainer />
           <p className="mt-10 text-center text-sm text-gray-500">
             Already have an account ?{" "}
             <NavLink to="/login" className="font-bold text-blue-700">

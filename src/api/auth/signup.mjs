@@ -1,12 +1,7 @@
 import { REGISTER_URL } from "../../constants";
-
 const url = REGISTER_URL;
-console.log(url);
-
 
 export async function signUp(formData) {
-  console.log(formData);
-
   try {
     const response = await fetch(url, {
       method: "Post",
@@ -17,17 +12,17 @@ export async function signUp(formData) {
     });
 
     if (!response.ok) {
-      throw new Error("An error has occured", response.status);
+      if (response.status === 401) {
+        throw new Error("Unauthorized: Please check your credentials");
+      } else if (response.status === 404) {
+        throw new Error("Resource not found");
+      } else {
+        throw new Error("An error has occurred");
+      }
     }
-
-    const data = await response.json();
-    
-    return data;
+    return response.json();
   } catch (error) {
-    console.log("Register error", error.message);
+    console.error("Error during sign-up:", error.message);
     throw error;
   }
 }
-
-
-
