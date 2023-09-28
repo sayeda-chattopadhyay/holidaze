@@ -6,9 +6,11 @@ import SearchVenues from "../../components/search/SearchVenues";
 import LoadingIndicator from "../../components/ui/LoadingIndicator";
 import ErrorMessage from "../../components/ui/ErrorMessage";
 
-const qs = "?sort=created&sortOrder=desc&&_owner=true&_bookings=true";
+const venuesLimit = 90;
+const qs = `?sort=created&sortOrder=desc&&_owner=true&_bookings=true&limit=${venuesLimit}`;
 //const qs = "?sort=created&sortOrder=Desc&&_owner=true&_bookings=true"; // this code is to check error message
 const allVenuesUrl = VENUES_URL + qs;
+// const allVenuesUrl = VENUES_URL + "?sort=created&sortOrder=desc&&_owner=true&_bookings=true";
 
 const AllVenues = () => {
   const [search, setSearch] = useState("");
