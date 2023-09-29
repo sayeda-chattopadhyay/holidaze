@@ -10,7 +10,6 @@ const venuesLimit = 90;
 const qs = `?sort=created&sortOrder=desc&&_owner=true&_bookings=true&limit=${venuesLimit}`;
 const allVenuesUrl = VENUES_URL + qs;
 
-
 const AllVenues = () => {
   const [search, setSearch] = useState("");
   const { data, isLoading, isError, errorMessage } = ApiHook(allVenuesUrl);
@@ -44,7 +43,7 @@ const AllVenues = () => {
   return (
     <>
       <SearchVenues onSearch={setSearch} />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-start px-10 py-10 ">
+      <div className="cardContainer">
         {filteredVenues.length === 0 ? (
           <div className="mx-auto text-center text-2xl font-bold ">
             No results found

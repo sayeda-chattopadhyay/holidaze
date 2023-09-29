@@ -7,8 +7,8 @@ import BecomeAHost from "./becomeHost";
 const HomePage = () => {
   return (
     <>
-      <div>
-        <HeroBanner />
+     <HeroBanner />
+      <div className="mx-auto mt-40 max-w-7xl">
         {/* <SearchSection /> */}
         <AllVenues />s
         <SellingPoints />
