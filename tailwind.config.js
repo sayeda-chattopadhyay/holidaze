@@ -5,11 +5,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#0F3CF0",
-        secondary: "#F2356B",
-        TextColor: {
-          100: "#F0F0F0",
-          200: "#E0E0E0",
+        primary: {
+          DEFAULT: "#0F3CF0",
+          darker: "#091a80",
+          lighter: "#4b69ff",
+        },
+        secondary: {
+          DEFAULT: "#B10B3A",
+          darker: "#80072c",
+          lighter: "#e1155a",
+        },
+        tertiary: {
+          DEFAULT: "#0CBB86",
+          darker: "#096d53",
+          lighter: "#15eaae",
         },
       },
       fontFamily: {
