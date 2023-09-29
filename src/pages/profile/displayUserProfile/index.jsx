@@ -51,36 +51,36 @@ const DisplayProfile = ({ profile }) => {
             <div
               className={`border border-secondary-500 px-4 py-4 cursor-pointer ${
                 activeTab === "bookings"
-                  ? "bg-secondary text-white"
+                  ? "bg-secondary-lighter text-white"
                   : "bg-white text-secondary hover:bg-red-100"
               }`}
               onClick={() => setActiveTab("bookings")}
             >
-              <h4 className="text-2xl font-customFont text-center">
+              <h4 className="text-2xl font-semibold text-center">
                 Your Bookings
               </h4>
             </div>
             <div
               className={`border border-secondary-500 px-4 py-4  cursor-pointer ${
                 activeTab === "venues"
-                  ? "bg-secondary text-white"
+                  ? "bg-secondary-lighter text-white"
                   : "bg-white text-secondary hover:bg-red-100"
               }`}
               onClick={() => setActiveTab("venues")}
             >
-              <h4 className="text-2xl font-customFont text-center">
+              <h4 className="text-2xl font-semibold text-center">
                 Your Venues
               </h4>
             </div>
             <div
               className={`border border-secondary-500 px-4 py-4 cursor-pointer ${
                 activeTab === "createVenue"
-                  ? "bg-secondary text-white"
+                  ? "bg-secondary-lighter text-white"
                   : "bg-white text-secondary hover:bg-red-100"
               }`}
               onClick={() => setActiveTab("createVenue")}
             >
-              <h4 className="text-2xl font-customFont text-center">
+              <h4 className="text-2xl font-semibold text-center">
                 Create New Venue
               </h4>
             </div>
