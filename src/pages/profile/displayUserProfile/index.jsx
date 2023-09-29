@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import AvatarModal from "../avatar/AvatarModal";
 import { useState } from "react";
 import BookingVenueCard from "../userBookings";
-//import VenueCardCretedByHost from "../usersVenue";
 import UserVenues from "../userVenues";
 import CreateVenueForm from "../createVenue/CreateVenueForm";
 import noAvatarImage from "/src/assets/images/no-avatar.png";
@@ -17,9 +16,6 @@ const DisplayProfile = ({ profile }) => {
 
   setAllVenues(venues);
 
-  console.log("profile:", profile);
-  console.log("bookings by profile:", bookings);
-
   const newAvatar = avatar ? avatar : noAvatarImage;
 
   const paths = [
@@ -30,6 +26,7 @@ const DisplayProfile = ({ profile }) => {
   return (
     <>
       <BreadCrumb paths={paths} />
+      {/* profile info */}
       <div className="container mx-auto px-10 py-10 max-w-2xl bg-white rounded-lg shadow-lg">
         <div className="flex flex-col items-center md:flex-row md:justify-center gap-10 md:space-x-4">
           <img
@@ -48,52 +45,52 @@ const DisplayProfile = ({ profile }) => {
         </div>
       </div>
       {/* tab start */}
-      <div className="container mx-auto mt-10">
+      <div className="container mx-auto mt-20">
         {venueManager ? (
-          <div className="flex-col md:flex md:flex-row justify-between items-center max-w-sm mx-auto md:max-w-lg px-4 py-4 space-y-2">
+          <div className="flex-col md:flex md:flex-row justify-between items-center max-w-sm mx-auto md:max-w-xl px-4 py-4">
             <div
-              className={`border px-4 py-4 cursor-pointer ${
+              className={`border border-secondary-500 px-4 py-4 cursor-pointer ${
                 activeTab === "bookings"
-                  ? "bg-red-500 text-white"
-                  : "bg-white text-red-500 hover:bg-red-100 hover:text-red-700"
+                  ? "bg-secondary text-white"
+                  : "bg-white text-secondary hover:bg-red-100"
               }`}
               onClick={() => setActiveTab("bookings")}
             >
-              <h3 className="text-xl font-customFont text-center">
-                Your Upcoming Bookings
-              </h3>
+              <h4 className="text-2xl font-customFont text-center">
+                Your Bookings
+              </h4>
             </div>
             <div
-              className={`border border-red-500 px-4 py-4 cursor-pointer ${
+              className={`border border-secondary-500 px-4 py-4  cursor-pointer ${
                 activeTab === "venues"
-                  ? "bg-red-500 text-white"
-                  : "bg-white text-red-500 hover:bg-red-100 hover:text-red-700"
+                  ? "bg-secondary text-white"
+                  : "bg-white text-secondary hover:bg-red-100"
               }`}
               onClick={() => setActiveTab("venues")}
             >
-              <h1 className="text-3xl font-customFont text-center">
-                Your Rented Venues
-              </h1>
+              <h4 className="text-2xl font-customFont text-center">
+                Your Venues
+              </h4>
             </div>
             <div
-              className={`border border-red-500 px-4 py-4 cursor-pointer ${
-                activeTab === "expiredBookings"
-                  ? "bg-red-500 text-white"
-                  : "bg-white text-red-500 hover:bg-red-100 hover:text-red-700"
+              className={`border border-secondary-500 px-4 py-4 cursor-pointer ${
+                activeTab === "createVenue"
+                  ? "bg-secondary text-white"
+                  : "bg-white text-secondary hover:bg-red-100"
               }`}
               onClick={() => setActiveTab("createVenue")}
             >
-              <h1 className="text-3xl font-customFont text-center">
+              <h4 className="text-2xl font-customFont text-center">
                 Create New Venue
-              </h1>
+              </h4>
             </div>
           </div>
         ) : (
           <div className="flex-col md:flex md:flex-row justify-between items-center max-w-sm mx-auto md:max-w-lg px-4 py-4 ">
             <div
-              className={`border border-blue-500 px-4 py-4 cursor-pointer ${
+              className={`flex-grow px-4 py-4 cursor-pointer ${
                 activeTab === "bookings"
-                  ? "bg-red-500 text-white"
+                  ? "border-b-4 border-blue-500 bg-red-500 text-white"
                   : "bg-white text-red-500 hover:bg-red-100 hover:text-red-700"
               }`}
               onClick={() => setActiveTab("bookings")}
@@ -123,19 +120,11 @@ const DisplayProfile = ({ profile }) => {
         {activeTab === "venues" && (
           <div className="container mx-auto px-4 py-4  bg-gray-100 rounded-lg shadow-lg mt-10">
             <h1 className="text-center text-xl md:text-2xl bg-gray-200 py-2 rounded-lg">
-              All venues created by {name}
+              {venues && venues.length > 0
+                ? `All venues created by ${name}`
+                : `Hi ! ${name},  you have not created any venues yet`}
             </h1>
-            <UserVenues />
-            {/* {venues && venues.length > 0 ? (
-              venues.map((userVenue) => (
-                <VenueCardCretedByHost
-                  key={userVenue.id}
-                  userVenue={userVenue}
-                />
-              ))
-            ) : (
-              <p>No Venues created by you</p>
-            )} */}
+            {venues && venues.length > 0 ? <UserVenues /> : null}
           </div>
         )}
         {activeTab === "createVenue" && (
