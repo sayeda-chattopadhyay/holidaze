@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useAuth } from "../../context/authUtils.js";
 import { useNavigate } from "react-router-dom";
+import Logo from "./Logo.jsx";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,13 +18,14 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-blue-800 py-4 px-8 fixed top-0 left-0 right-0 z-10">
+    <nav className="bg-primary py-4 px-8 fixed top-0 left-0 right-0 z-10">
       <div className="flex items-center justify-between">
-        <div className="flex items-center">
+        <Logo/>
+        {/* <div className="flex items-center">
           <NavLink to="/" className="text-white text-2xl font-semibold">
             Holidaze
           </NavLink>
-        </div>
+        </div> */}
         <div className="md:flex space-x-6 font-bold hidden">
           <NavLink to="/" className="text-white hover:text-gray-300">
             Home
@@ -82,8 +84,9 @@ const Navbar = () => {
           </button>
         </div>
       </div>
+      {/* hamburger open */}
       {isOpen && (
-        <div className="mt-2 md:hidden">
+        <div className=" mt-2 md:hidden">
           <NavLink to="/" className="block text-white hover:text-gray-300 mb-2">
             Home
           </NavLink>

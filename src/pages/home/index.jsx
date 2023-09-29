@@ -7,10 +7,10 @@ import BecomeAHost from "./becomeHost";
 const HomePage = () => {
   return (
     <>
-     <HeroBanner />
       <div className="mx-auto mt-40 max-w-7xl">
+      <HeroBanner />
         {/* <SearchSection /> */}
-        <AllVenues />s
+        <AllVenues />
         <SellingPoints />
         <BecomeAHost />
       </div>
