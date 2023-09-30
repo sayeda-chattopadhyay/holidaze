@@ -23,16 +23,16 @@ Holidaze is a new front end applicaiton for a accomodation booking site created 
 ## Functionalities
 
 The following functionalities are available to the users:
-- a user may view a list of Venues, search for a specific Venue
-- a user may view a calendar with available dates for a Venue
-- a user may view a calendar with available dates for a Venue
+- a user may view a list of Venues, search for a specific venue
+- a user may view a calendar with available dates for a venue
+- a user may view a calendar with available dates for a venue
 - users with stud.noroff.no email may register
 - may create a booking at a venue and view their upcoming bookings
 - unregistered user can browse through and see different venues
-- user with a stud.noroff.no email may register as a Venue manager
+- user with a stud.noroff.no email may register as a venue manager
 - a registered Venue manager may create a Venue, and update and delete them
 - registered users can login , logout, update their avatar and view their bookings.
-- registered Venue manager may view bookings for a Venue they manage
+- registered Venue manager may view bookings for a venue they manage
 
 
 
@@ -65,7 +65,7 @@ The following functionalities are available to the users:
     </tr>
     <tr>
       <th>Repository</th>
-      <td><a href="">Project Repository</a></td>
+      <td><a href="https://github.com/sayeda-chattopadhyay/holidaze">Project Repository</a></td>
     </tr>
     <tr>
       <th>Hosted Demo</th>
