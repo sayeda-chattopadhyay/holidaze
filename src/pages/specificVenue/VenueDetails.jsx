@@ -4,8 +4,8 @@ import { FaUtensils } from "react-icons/fa";
 import { FaPaw } from "react-icons/fa";
 import { FaCar } from "react-icons/fa";
 import { Carousel } from "react-responsive-carousel";
-
 import NoImage from "/src/assets/images/no-image.jpg";
+import NoAvatar from "/src/assets/images/no-avatar.png";
 import BookingForm from "./bookingVenue/BookingForm";
 import { load } from "../../storage/index.mjs";
 import Breadcrumb from "../../components/ui/Breadcrumb";
@@ -27,7 +27,6 @@ const VenueDetails = ({ venue }) => {
 
   const token = load("token");
   const [isUserLoggedIn, setisUserLoggedIn] = useState(false);
-  //const [bookingArray, setBookingArray] = useState(venue.bookings); // conditionally render booking details
 
   useEffect(() => {
     if (token) {
@@ -53,6 +52,7 @@ const VenueDetails = ({ venue }) => {
     ];
   }
 
+  // Function to format date
   function formatDate(dateString) {
     const date = new Date(dateString);
     const day = date.getDate().toString().padStart(2, "0");
@@ -61,23 +61,57 @@ const VenueDetails = ({ venue }) => {
     return `${day}/${month}/${year}`;
   }
 
+  // Function to render booking details
+  const renderBookingDetails = () => {
+    return bookings && bookings.length > 0 ? (
+      bookings.map((booking, index) => (
+        <div key={index} className="mb-4">
+          <p className="font-semibold">Booking {index + 1}</p>
+          <p>Check-In: {formatDate(booking.dateFrom)}</p>
+          <p>Check-Out: {formatDate(booking.dateTo)}</p>
+        </div>
+      ))
+    ) : (
+      <div>No bookings yet</div>
+    );
+  };
+
+  // Function to render media
+  let mediaItems;
+  if (media.length === 0) {
+    mediaItems = (
+      <div>
+        <img
+          className="object-cover mx-auto h-80 rounded-xl"
+          src={NoImage}
+          alt={name}
+        />
+      </div>
+    );
+  } else {
+    mediaItems = media.map((imageUrl, index) => (
+      <div key={`media-${index}`}>
+        <img
+          className="object-cover mx-auto h-80 rounded-xl"
+          src={imageUrl}
+          alt={name}
+        />
+      </div>
+    ));
+  }
+
+  // Function to render owner avatar
+
+  const ownerAvatar = owner.avatar ? owner.avatar : NoAvatar;
+
   return (
     <div key={id}>
       <Breadcrumb paths={paths} />
       <div className="container max-w-5xl mx-auto px-4 py-4">
         <Carousel showStatus={false} showThumbs={false}>
-          {media.map((imageUrl, index) => (
-            <div key={`media-${index}`}>
-              <img
-                className=" object-cover mx-auto h-80 rounded-xl"
-                src={imageUrl ? imageUrl : NoImage}
-                alt={name}
-              />
-            </div>
-          ))}
+          {mediaItems}
         </Carousel>
       </div>
-
       <div className="container mx-auto px-4 py-4 border border-red-600 md:flex md:flex-row justify-between mt-4">
         <div className="w-full md:w-1/2 px-6 py-4 border border-b-gray-200">
           <div className="mt-4 ">
@@ -133,7 +167,7 @@ const VenueDetails = ({ venue }) => {
             <h2 className="font-bold text-xl mt-6">Owner Details</h2>
             <div className="mt-4">
               <img
-                src={owner.avatar}
+                src={ownerAvatar}
                 alt={owner.name}
                 className="w-16 h-16 rounded-full"
               />
@@ -142,26 +176,13 @@ const VenueDetails = ({ venue }) => {
             </div>
           </div>
         </div>
-        {/* temporary codeto get booking details dateFrom and dateTo*/}
+
         <div className="w-full md:w-1/2 px-6 py-4 border border-b-gray-200">
           <h2 className="font-bold text-xl text-center border-b-4">
             Booking Details
           </h2>
-          {bookings && bookings.length > 0 ? (
-            bookings.map((booking, index) => (
-              <div key={index} className="mb-4">
-                <p className="font-semibold">Booking {index + 1}</p>
-                <p>Check-In: {formatDate(booking.dateFrom)}</p>
-                <p>Check-Out: {formatDate(booking.dateTo)}</p>
-              </div>
-            ))
-          ) : (
-            <div>No bookings yet</div>
-          )}
+          {renderBookingDetails()}
         </div>
-
-        {/* end of temporary code to get booking details dateFrom and dateTo*/}
-
         <div className="w-full md:w-1/2 px-6 py-4 border border-b-gray-200">
           <h2 className="font-bold text-xl text-center border-b-4">
             Book the Venue
