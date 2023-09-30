@@ -10,10 +10,7 @@ Currently, two official plugins are available:
 
 # Holidaze
 
-
-# Holidaze  (Semester-Project-2)
-
-![Homepage Preview](/images/Logo.png)
+![Homepage Preview](/logo.png)
 
 ## Table Of Content
 
@@ -28,9 +25,7 @@ Currently, two official plugins are available:
 
 ## About
 
-A newly launched accommodation booking site called Holidaze has approached you to develop a brand new front end for their application. While they have a list of required features, the design and user experience has not been specified. Working with the official API documentation, plan, design and build a modern front end accommodation booking application.
-
-There are two aspects to this brief: the customer-facing side of the website where users can book holidays at a venue, and an admin-facing side of the website where users can register and manage venues and bookings at those venues.
+Holidaze is a new front end applicaiton for a accomodation booking site created as a final exam for the front end development course at Noroff. There are two  unique aspects to this application: the customer-facing side of the website where users can book holidays at a venue, and an admin-facing side of the website where users can register and manage venues and bookings at those venues.
 
 
 
@@ -106,7 +101,7 @@ The following functionalities are available to the users:
 
 </br>
 
-
+https://ornate-flan-63ec17.netlify.app/
 
 
 # Setting up
