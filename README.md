@@ -22,16 +22,15 @@ Holidaze is a new front end applicaiton for a accomodation booking site created 
 
 The following functionalities are available to the users:
 
-- a user may view a list of Venues, search for a specific venue
-- a user may view a calendar with available dates for a venue
+- a user may view a list of venues, search for a specific venue
 - a user may view a calendar with available dates for a venue
 - users with stud.noroff.no email may register
-- may create a booking at a venue and view their upcoming bookings
+- users may create a booking at any venue and view their upcoming bookings
 - unregistered user can browse through and see different venues
 - user with a stud.noroff.no email may register as a venue manager
-- a registered Venue manager may create a Venue, and update and delete them
-- registered users can login , logout, update their avatar and view their bookings.
-- registered Venue manager may view bookings for a venue they manage
+- a registered venue manager may create a venue, and update and delete them
+- registered users can login, logout, update their avatar and view their bookings
+- registered venue manager may view bookings for a venue they manage
 
 ## Links
 
