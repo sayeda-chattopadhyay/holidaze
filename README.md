@@ -50,7 +50,7 @@ The following functionalities are available to the users:
   <tbody>
     <tr>
       <th>Gantt Chart</th>
-      <td><a href="/gantt chart- holidaze.pdf">Gantt Chart Image</a></td>
+      <td><a href="https://drive.google.com/file/d/1w3Yexp5pryzmyH78ONcBsIVaEb__MngP/view?usp=drive_link">Gantt Chart Image</a></td>
     </tr>
     <tr>
       <th>Design Prototype</th>
