@@ -54,11 +54,11 @@ The following functionalities are available to the users:
     </tr>
     <tr>
       <th>Design Prototype</th>
-      <td><a href="https://www.figma.com/proto/E7pYry1HY0eZQQbkXR99ky/Holidaze?page-id=0%3A1&type=design&node-id=76-3328&viewport=1712%2C-316%2C0.16&t=GH4bkIC3ywusbnyr-1&scaling=scale-down-width&mode=design">Desktop Prototype</a></td> 
+      <td><a href="https://www.figma.com/proto/E7pYry1HY0eZQQbkXR99ky/Holidaze?page-id=0%3A1&type=design&node-id=58-2688&viewport=1712%2C-316%2C0.16&t=GH4bkIC3ywusbnyr-1&scaling=scale-down-width&mode=design">Desktop Prototype</a></td> 
     </tr>
     <tr>
       <th>Style Guide</th>
-      <td><a href="https://www.figma.com/file/E7pYry1HY0eZQQbkXR99ky/Holidaze?type=design&node-id=0%3A1&mode=design&t=CQkULi5I3JswXX43-1">Style Guide</a></td>
+      <td><a href="https://www.figma.com/file/O9CSU4wqS8V86Mw0dx80YX/Holidaze-style-guide?type=design&node-id=0%3A1&mode=design&t=95FsUStrFdRp4MjX-1">Style Guide</a></td>
     </tr>
     <tr>
       <th>Trello Board</th>
