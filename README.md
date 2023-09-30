@@ -1,7 +1,6 @@
-
 # Holidaze
 
-![Homepage Preview](/logo.png)
+![Homepage Preview](/src/assets/images/logo.png)
 
 ## Table Of Content
 
@@ -17,13 +16,12 @@
 
 ## About
 
-Holidaze is a new front end applicaiton for a accomodation booking site created as a final exam for the front end development course at Noroff. There are two  unique aspects to this application: the customer-facing side of the website where users can book holidays at a venue, and an admin-facing side of the website where users can register and manage venues and bookings at those venues.
-
-
+Holidaze is a new front end applicaiton for a accomodation booking site created as a final exam for the front end development course at Noroff. There are two unique aspects to this application: the customer-facing side of the website where users can book holidays at a venue, and an admin-facing side of the website where users can register and manage venues and bookings at those venues.
 
 ## Functionalities
 
 The following functionalities are available to the users:
+
 - a user may view a list of Venues, search for a specific venue
 - a user may view a calendar with available dates for a venue
 - a user may view a calendar with available dates for a venue
@@ -34,9 +32,6 @@ The following functionalities are available to the users:
 - a registered Venue manager may create a Venue, and update and delete them
 - registered users can login , logout, update their avatar and view their bookings.
 - registered Venue manager may view bookings for a venue they manage
-
-
-
 
 ## Links
 
@@ -75,7 +70,7 @@ The following functionalities are available to the users:
   </tbody>
 </table>
 
-##  Tools
+## Tools
 
 <img src="https://skillicons.dev/icons?i=react,tailwind,js,github,vscode,netlify,figma"/>
 
@@ -94,11 +89,7 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-
-
 </br>
-
-
 
 ## Setting up
 
@@ -106,23 +97,22 @@ Currently, two official plugins are available:
 - Run `npm install` in the project root directory to install the necessary dependencies
 - Run `npm run dev` to start the development server
 
-
-
 ## Contributing
 
 Contact if you face any issues and if you want to suggest improvements and changes.
 
 ## License
 
-This project is licensed under a Creative Commons license. It is open for contributions, but please credit the project if you use the code in your  projects.
+This project is licensed under a Creative Commons license. It is open for contributions, but please credit the project if you use the code in your projects.
 
 ## Bio
--   UX designer and a front-end developer
--   BSc in Physical Sciences
--   Several years of experience in banking 
+
+- UX designer and a front-end developer
+- BSc in Physical Sciences
+- Several years of experience in banking
 
 <a href="https://stellular-taffy-47ab91.netlify.app">My Portfolio</a>
 
+## Contact
 
-## Contact 
 <a href="https://www.linkedin.com/in/sayeda-chattopadhyay-7b33ba156/" target="_blank"> <img src="https://user-images.githubusercontent.com/83353551/195984318-dc867bbc-1288-4872-ba34-e6a4a7700535.png" alt="behance" width="40" height="40"/> </a> <a href="https://www.behance.net/gallery/111339401/UX-Portfolio" target="_blank"> <img src="https://github.com/devicons/devicon/blob/master/icons/behance/behance-original.svg" alt="behance" width="40" height="40"/> </a>
