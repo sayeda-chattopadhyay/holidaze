@@ -9,6 +9,7 @@
 - [Functionalities](#functionalities)
 - [Links](#links)
 - [Tools](#tools)
+- [Setting Up](#setting-up)
 - [Contributing](#contributing)
 - [License](#license)
 - [Developer Bio](#bio)
@@ -99,7 +100,7 @@ Currently, two official plugins are available:
 
 
 
-# Setting up
+## Setting up
 
 - Download and extract the zip file or clone the project in the command line from your preferred editor.
 - Run `npm install` in the project root directory to install the necessary dependencies
