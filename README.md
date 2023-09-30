@@ -1,12 +1,3 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
 
 # Holidaze
 
@@ -58,19 +49,19 @@ The following functionalities are available to the users:
   <tbody>
     <tr>
       <th>Gantt Chart</th>
-      <td><a href="">Gantt Chart Image</a></td>
+      <td><a href="https://trello.com/b/Dimphnns/holidaze-pe-2">Gantt Chart Image</a></td>
     </tr>
     <tr>
       <th>Design Prototype</th>
-      <td><a href="">Desktop Prototype</a></td> 
+      <td><a href="https://www.figma.com/proto/E7pYry1HY0eZQQbkXR99ky/Holidaze?page-id=0%3A1&type=design&node-id=76-3328&viewport=1712%2C-316%2C0.16&t=GH4bkIC3ywusbnyr-1&scaling=scale-down-width&mode=design">Desktop Prototype</a></td> 
     </tr>
     <tr>
       <th>Style Guide</th>
-      <td><a href="">Style Guide</a></td>
+      <td><a href="https://www.figma.com/file/E7pYry1HY0eZQQbkXR99ky/Holidaze?type=design&node-id=0%3A1&mode=design&t=CQkULi5I3JswXX43-1">Style Guide</a></td>
     </tr>
     <tr>
       <th>Trello Board</th>
-      <td><a href="">Project Board Link</a></td>
+      <td><a href="https://trello.com/b/Dimphnns/holidaze-pe-2">Project Board Link</a></td>
     </tr>
     <tr>
       <th>Repository</th>
@@ -78,7 +69,7 @@ The following functionalities are available to the users:
     </tr>
     <tr>
       <th>Hosted Demo</th>
-      <td><a href="">Live Site</a></td>
+      <td><a href="https://ornate-flan-63ec17.netlify.app/">Live Site</a></td>
     </tr>
   </tbody>
 </table>
@@ -95,18 +86,24 @@ The following functionalities are available to the users:
 - Netlify
 - Figma
 
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 
 
 </br>
 
-https://ornate-flan-63ec17.netlify.app/
 
 
 # Setting up
 
-Download and extract the zip file or clone the project in the command line from your preferred editor.
+- Download and extract the zip file or clone the project in the command line from your preferred editor.
+- Run `npm install` in the project root directory to install the necessary dependencies
+- Run `npm run dev` to start the development server
 
 
 
