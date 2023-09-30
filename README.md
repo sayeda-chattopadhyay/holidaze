@@ -50,7 +50,7 @@ The following functionalities are available to the users:
   <tbody>
     <tr>
       <th>Gantt Chart</th>
-      <td><a href="https://trello.com/b/Dimphnns/holidaze-pe-2">Gantt Chart Image</a></td>
+      <td><a href="/gantt chart- holidaze.pdf">Gantt Chart Image</a></td>
     </tr>
     <tr>
       <th>Design Prototype</th>
