@@ -19,12 +19,11 @@ const SearchVenues = ({ onSearch }) => {
 
   return (
     <div className="container max-w-4xl mx-auto mt-20">
-      <h2>Your search Result: {search}</h2>
       <div className="max-w-md rounded overflow-hidden mx-auto p-1 font-pins text-fontcolor">
-        <div className="w-full max-w-md pb-3 pt-3">
-          <div className="flex items-center border-2 border-red-300 py-2 px-2">
+        <div className="w-full max-w-md pb-3 pt-3 px-6">
+          <div className="flex items-center border-2 border-gray-300 bg-quaternary rounded-full py-2 px-2  ">
             <input
-              className="w-full pl-4 pr-10 py-2 leading-tight focus:outline-none"
+              className="w-full pl-4 pr-10 py-2 leading-tight focus:outline-none bg-quaternary-lighter "
               type="text"
               placeholder="Search for a venue"
               value={search}
@@ -32,7 +31,7 @@ const SearchVenues = ({ onSearch }) => {
             />
             {search.length > 0 ? (
               <BsXCircleFill
-                className="w-6 h-6 text-gray-500"
+                className="w-6 h-6 text-gray-700"
                 onClick={handleClearSearch}
               />
             ) : (
