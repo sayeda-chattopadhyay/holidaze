@@ -89,7 +89,7 @@ const VenueDetails = ({ venue }) => {
           {mediaItems}
         </Carousel>
       </div>
-      <div className="container mx-auto px-4 py-4 border border-red-600 md:flex md:flex-row justify-between mt-4">
+      <div className="container mx-auto px-4 py-4 border shadow-md md:flex md:flex-row justify-between mt-4">
         <div className="w-full md:w-1/2 px-6 py-4 border border-b-gray-200">
           <div className="mt-4 ">
             <h2 className="font-bold text-3xl mb-2 ">{name.toUpperCase()}</h2>
