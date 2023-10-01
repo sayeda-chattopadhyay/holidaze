@@ -22,7 +22,7 @@ export default {
         },
         quaternary: {
           DEFAULT: "#D1E1FF",
-          darker: "",
+          darker: "#80ACFF",
           lighter: "#CCDEFF",
         },
       },
