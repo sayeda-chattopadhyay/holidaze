@@ -60,7 +60,6 @@ const CreateVenueForm = () => {
 
   const { addVenue } = useVenues();
 
-
   const {
     values,
     handleBlur,
@@ -92,8 +91,6 @@ const CreateVenueForm = () => {
     },
 
     onSubmit: async (values, action) => {
-    
-
       const formData = {
         name: values.name,
         description: values.description,
@@ -120,7 +117,7 @@ const CreateVenueForm = () => {
 
         if (response) {
           toast.success(
-            "Successfully creating venue! Please check on your rented venue tab",
+            "Successfully creating venue! Please check on your venues tab",
             {
               position: "bottom-center",
               autoClose: 5000,
