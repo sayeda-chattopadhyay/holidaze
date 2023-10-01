@@ -92,9 +92,11 @@ const VenueDetails = ({ venue }) => {
       <div className="container mx-auto px-4 py-4 border border-red-600 md:flex md:flex-row justify-between mt-4">
         <div className="w-full md:w-1/2 px-6 py-4 border border-b-gray-200">
           <div className="mt-4 ">
-            <h2 className="font-bold text-xl mb-2 ">{name.toUpperCase()}</h2>
-            <h6>Price:{price} nok/night</h6>
-            <p className="t text-gray-700">Max Guests: {maxGuests}</p>
+            <h2 className="font-bold text-3xl mb-2 ">{name.toUpperCase()}</h2>
+            <h6 className="font-bold text-xl text-primary mb-2">
+              Price:{price} nok/night
+            </h6>
+            <p className="text-lg font-semibold text-gray-700 ">Max Guests: {maxGuests}</p>
           </div>
           <div className="mt-4">
             <h2 className="font-bold text-xl mt-4">Description</h2>
@@ -102,7 +104,7 @@ const VenueDetails = ({ venue }) => {
           </div>
           <div className="mb-4">
             <h2 className="font-bold text-xl mt-4">Address</h2>
-            <p className="text-gray-700">Address: {location.address}</p>
+            <p className="text-gray-700 text-lg">Address: {location.address}</p>
             <p className="text-gray-700">City: {location.city}</p>
             <p className="text-gray-700">Country: {location.country}</p>
             <p className="text-gray-700">Continent: {location.continent}</p>
