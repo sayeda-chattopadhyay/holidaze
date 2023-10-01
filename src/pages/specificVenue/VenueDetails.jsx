@@ -4,11 +4,12 @@ import { FaUtensils } from "react-icons/fa";
 import { FaPaw } from "react-icons/fa";
 import { FaCar } from "react-icons/fa";
 import { Carousel } from "react-responsive-carousel";
-import NoImage from "/src/assets/images/no-image.jpg";
-import NoAvatar from "/src/assets/images/no-avatar.png";
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import BookingForm from "./bookingVenue/BookingForm";
 import { load } from "../../storage/index.mjs";
 import Breadcrumb from "../../components/ui/Breadcrumb";
+import NoImage from "/src/assets/images/no-image.jpg";
+import NoAvatar from "/src/assets/images/no-avatar.png";
 
 const VenueDetails = ({ venue }) => {
   const {
