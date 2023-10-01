@@ -56,7 +56,7 @@ The following functionalities are available to the users:
     </tr>
     <tr>
       <th>Trello Board</th>
-      <td><a href="https://trello.com/b/Dimphnns/holidaze-pe-2">Project Board Link</a></td>
+      <td><a href="https://trello.com/invite/b/Dimphnns/ATTI19ec2d5a7415577aba1b9cd4ec6854bcC9CDC2DF/holidaze-pe-2">Project Board Link</a></td>
     </tr>
     <tr>
       <th>Repository</th>
