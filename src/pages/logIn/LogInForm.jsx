@@ -114,7 +114,7 @@ const LogInForm = () => {
             <button
               type="submit"
               disabled={formik.isSubmitting} // Disable the button while submitting
-              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="flex w-full justify-center rounded-md bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-primary-lighter focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               {formik.isSubmitting ? "Logging In..." : "Log In"}
             </button>
@@ -123,7 +123,7 @@ const LogInForm = () => {
         {errorMessage && <p className="text-red-500 mt-4">{errorMessage}</p>}
         <p className="mt-10 text-center text-sm text-gray-500">
           Already have an account?{" "}
-          <NavLink to="/signup" className="font-bold text-blue-700">
+          <NavLink to="/signup" className="font-bold text-primary">
             Sign up
           </NavLink>
         </p>
