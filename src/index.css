@@ -44,3 +44,22 @@ text-decoration: underline;
 }
 
 
+.btn{
+  background-color: #0f3cf0;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+
+
+.btn:hover{
+  background-color: #091a80;
+  color: #fff;
+  border: 1px solid primary;
+}
