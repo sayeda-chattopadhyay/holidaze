@@ -1,14 +1,10 @@
-// import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { BsPeopleFill } from "react-icons/bs";
 import { RiMoneyPoundCircleFill } from "react-icons/ri";
 import { FaCalendar } from "react-icons/fa";
-
 import { Link } from "react-router-dom";
 import NoImage from "/src/assets/images/no-image.jpg";
 const imageNotAvailable = "image not available";
-// import MediaComponent from "/src/components/ui/MediaComponent.jsx";
 
 function VenueCardCretedByHost({ userVenue }) {
   const { id, name, created, location, maxGuests, media, price } = userVenue;
@@ -23,6 +19,9 @@ function VenueCardCretedByHost({ userVenue }) {
     return `${day}/${month}/${year}`;
   }
 
+  const imageSrc = media && media.length > 0 ? media[0] : NoImage;
+  const altText = media && media.length > 0 ? name : imageNotAvailable;
+
   return (
     <>
       <Link
@@ -32,8 +31,8 @@ function VenueCardCretedByHost({ userVenue }) {
         <div className="md:w-1/2">
           <img
             className="w-full h-48 object-cover rounded-lg shadow-sm mb-4 md:mb-0"
-            src={media && media.length > 0 ? media[0] : ""}
-            alt={name}
+            src={imageSrc}
+            alt={altText}
           />
         </div>
         <div className="p-4 md:w-1/2">
@@ -57,13 +56,6 @@ function VenueCardCretedByHost({ userVenue }) {
             <FaCalendar />
             Created: {formatDate(created)}
           </div>
-
-          {/* <Link
-              to={`/venueCreatedByHost/${id}`}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-            >
-              View More
-            </Link> */}
         </div>
       </Link>
     </>
