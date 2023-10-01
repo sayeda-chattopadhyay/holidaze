@@ -96,7 +96,9 @@ const VenueDetails = ({ venue }) => {
             <h6 className="font-bold text-xl text-primary mb-2">
               Price:{price} nok/night
             </h6>
-            <p className="text-lg font-semibold text-gray-700 ">Max Guests: {maxGuests}</p>
+            <p className="text-lg font-semibold text-gray-700 ">
+              Max Guests: {maxGuests}
+            </p>
           </div>
           <div className="mt-4">
             <h2 className="font-bold text-xl mt-4">Description</h2>
@@ -157,13 +159,15 @@ const VenueDetails = ({ venue }) => {
         </div>
 
         <div className="w-full md:w-1/2 px-6 py-4 border border-b-gray-200">
-          <h2 className="font-bold text-xl text-center border-b-4">
+          <h2 className="font-bold text-xl text-center border-b-4 border-primary py-4">
             Book the Venue
           </h2>
           {isUserLoggedIn ? (
             <BookingForm price={price} maxGuests={maxGuests} venueId={id} />
           ) : (
-            <p className="text-center">Please login to book the venue.</p>
+            <p className="text-center text-lg font-semibold mt-10 text-secondary">
+              Please login to book the venue.
+            </p>
           )}
         </div>
       </div>

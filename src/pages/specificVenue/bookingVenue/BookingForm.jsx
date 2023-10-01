@@ -19,8 +19,6 @@ const BookingForm = ({ price, maxGuests }) => {
 
   const { specificVenue } = useSpecificVenue(id);
 
-
-
   const initialValues = {
     dateFrom: null,
     dateTo: null,
@@ -128,7 +126,7 @@ const BookingForm = ({ price, maxGuests }) => {
     <>
       <form
         onSubmit={formik.handleSubmit}
-        className="max-w-sm mx-auto mt-8 p-4 bg-white rounded-lg shadow-md"
+        className="max-w-sm mx-auto mt-10 p-4 bg-white rounded-lg shadow-md"
       >
         <div className="mb-4">
           <label
