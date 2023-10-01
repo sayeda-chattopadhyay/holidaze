@@ -7,8 +7,6 @@ export function useSpecificVenue(id) {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  
-
   async function getSpecificVenue(url) {
     try {
       setIsLoading(true);
@@ -16,11 +14,9 @@ export function useSpecificVenue(id) {
 
       const response = await fetch(url);
       const json = await response.json();
-      console.log(json);
 
       setSpecificVenue({ ...json, bookings: json.bookings });
     } catch (error) {
-      console.log(error);
       setIsError(true);
     } finally {
       setIsLoading(false);
