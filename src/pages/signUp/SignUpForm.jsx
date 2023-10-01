@@ -34,11 +34,11 @@ const SignUpForm = () => {
       email: "",
       password: "",
       avatar: "",
-      venueManager: false, // false
+      venueManager: false, 
     },
 
     onSubmit: async (values, action) => {
-      //remove async kyeword
+    
       const formData = {
         name: values.name,
         email: values.email,

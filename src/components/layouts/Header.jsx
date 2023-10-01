@@ -1,11 +1,10 @@
 import Navbar from "./Navbar";
-// import Logo from "./Logo";
 
 const Header = () => {
   return (
-    <>
+    <div>
       <Navbar />
-    </>
+    </div>
   );
 };
 

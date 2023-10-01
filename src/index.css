@@ -39,9 +39,8 @@
 }
 
 
-/* .card{
-    @apply max-w-sm rounded overflow-hidden shadow-md hover:bg-slate-100 hover:shadow-lg bg-grey-400 transition duration-300 transform hover:-translate-y-1 flex flex-col h-full;
-} */
-
+.active{
+text-decoration: underline;
+}
 
 

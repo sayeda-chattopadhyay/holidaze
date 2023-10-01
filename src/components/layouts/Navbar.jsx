@@ -20,17 +20,15 @@ const Navbar = () => {
   return (
     <nav className="bg-primary py-4 px-8 fixed top-0 left-0 right-0 z-10">
       <div className="flex items-center justify-between">
-        <Logo/>
-        {/* <div className="flex items-center">
-          <NavLink to="/" className="text-white text-2xl font-semibold">
-            Holidaze
-          </NavLink>
-        </div> */}
+        <Logo />
         <div className="md:flex space-x-6 font-bold hidden">
-          <NavLink to="/" className="text-white hover:text-gray-300">
+          <NavLink
+            to="/"
+            className="text-white hover:text-yellow-100 hover:underline"
+          >
             Home
           </NavLink>
-          <NavLink to="/venues" className="text-white hover:text-gray-300">
+          <NavLink to="/venues" className="text-white hover:text-yellow-100 hover:underline">
             Venues
           </NavLink>
         </div>
@@ -66,7 +64,6 @@ const Navbar = () => {
                   handleLogout();
                   navigate("/"); // Redirect to the home page after logout
                 }}
-                // Call clear function on click
                 className="text-white hover:bg-white hover:text-primary border-2 transition ease-out duration-500 rounded-full px-3 py-2"
               >
                 Logout
@@ -124,8 +121,8 @@ const Navbar = () => {
               <button
                 onClick={() => {
                   handleLogout();
-                  navigate("/"); // Redirect to the home page after logout
-                }} // Call clear function on click
+                  navigate("/");
+                }}
                 className="text-white hover:bg-white hover:text-primary border-2 transition ease-out duration-500 rounded-full px-3 py-2"
               >
                 Logout
