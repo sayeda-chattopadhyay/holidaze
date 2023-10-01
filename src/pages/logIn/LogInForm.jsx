@@ -4,7 +4,6 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useLogin } from "../../api/auth/login.jsx";
 import LoadingIndicator from "../../components/ui/LoadingIndicator";
-//import { set } from "date-fns";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -17,8 +16,7 @@ const LogInForm = () => {
   const { logIn } = useLogin();
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState(null);
-  // const [successMessage, setSuccessMessage] = useState(null);
-  const [isLoading, setIsLoading] = useState(false); // add success message
+  const [isLoading, setIsLoading] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -37,7 +35,6 @@ const LogInForm = () => {
         setIsLoading(true);
         actions.setSubmitting(true);
         await logIn(credentials);
-        // setSuccessMessage("You have successfully logged in!");
         navigate("/profile");
       } catch (error) {
         setErrorMessage(error.message);
@@ -124,7 +121,6 @@ const LogInForm = () => {
           </div>
         </form>
         {errorMessage && <p className="text-red-500 mt-4">{errorMessage}</p>}
-
         <p className="mt-10 text-center text-sm text-gray-500">
           Already have an account?{" "}
           <NavLink to="/signup" className="font-bold text-blue-700">
