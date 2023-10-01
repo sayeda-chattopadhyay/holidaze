@@ -1,12 +1,9 @@
-// This is the page that shows the specific venue created by the user (host).
-//This page also render booking details for the specific venue.
-//import { useState } from "react";
-
 import { FaWifi } from "react-icons/fa";
 import { FaUtensils } from "react-icons/fa";
 import { FaPaw } from "react-icons/fa";
 import { FaCar } from "react-icons/fa";
 import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import NoImage from "/src/assets/images/no-image.jpg";
 import VenueUpdateModal from "./updateVenue/VenueUpdateModal";
 import Breadcrumb from "../../components/ui/Breadcrumb";
@@ -15,9 +12,6 @@ import { useNavigate } from "react-router-dom";
 import { deleteVenue } from "./deleteVenue/DeleteVenueApiCall";
 
 const SpecificVenueCard = ({ specificVenue }) => {
-  console.log("specific Venue created by users:", specificVenue);
-  //const [showDeleteModal, setShowDeleteModal] = useState(false); //new
-
   const navigate = useNavigate();
 
   const {
@@ -76,21 +70,36 @@ const SpecificVenueCard = ({ specificVenue }) => {
     }
   };
 
+  // Function to render media
+  let mediaItems;
+  if (media.length === 0) {
+    mediaItems = (
+      <div>
+        <img
+          className="object-cover mx-auto h-80 rounded-xl"
+          src={NoImage}
+          alt={name}
+        />
+      </div>
+    );
+  } else {
+    mediaItems = media.map((imageUrl, index) => (
+      <div key={`media-${index}`}>
+        <img
+          className="object-cover mx-auto h-80 rounded-xl"
+          src={imageUrl}
+          alt={name}
+        />
+      </div>
+    ));
+  }
+
   return (
     <div key={id}>
       <Breadcrumb paths={paths} />
       <div className="container max-w-5xl mx-auto px-4 py-4">
-        {/* problem is here in map */}
         <Carousel showStatus={false} showThumbs={false}>
-          {media.map((imageUrl, index) => (
-            <div key={`media-${index}`}>
-              <img
-                className=" object-cover mx-auto h-80 rounded-xl"
-                src={imageUrl ? imageUrl : NoImage}
-                alt={name}
-              />
-            </div>
-          ))}
+          {mediaItems}
         </Carousel>
       </div>
 
@@ -105,14 +114,13 @@ const SpecificVenueCard = ({ specificVenue }) => {
             <p>{description}</p>
           </div>
           <div>
-            <h2>Address</h2>
+            <h2 className="font-bold text-xl mb-2">Address</h2>
             <p className="text-gray-700">Address: {location.address}</p>
             <p className="text-gray-700">City : {location.city}</p>
             <p className="text-gray-700">Country:{location.country}</p>
-            <p className="text-gray-700">Continent:{location.continent}</p>
           </div>
           <div>
-            <h2>Info</h2>
+            <h2 className="font-bold text-xl mb-2">Info</h2>
             <div className="flex gap-6 my-4">
               {meta.breakfast ? (
                 <div>
