@@ -34,11 +34,10 @@ const SignUpForm = () => {
       email: "",
       password: "",
       avatar: "",
-      venueManager: false, 
+      venueManager: false,
     },
 
     onSubmit: async (values, action) => {
-    
       const formData = {
         name: values.name,
         email: values.email,
@@ -50,7 +49,6 @@ const SignUpForm = () => {
       try {
         setIsLoading(true);
         const response = await signUp(formData);
-        console.log("Api response to sign up:", response);
 
         if (response) {
           toast.success(
@@ -62,7 +60,7 @@ const SignUpForm = () => {
             };
           action.resetForm();
           setTimeout(() => {
-            navigate("/login"); 
+            navigate("/login");
           }, 2000);
         } else {
           throw new Error("Registration failed.");
@@ -103,7 +101,7 @@ const SignUpForm = () => {
               </label>
               <div className="mt-2">
                 <input
-                 className="block w-full rounded-md border border-gray-300 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border border-gray-300 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   id="name"
                   name="name"
                   type="text"
@@ -129,7 +127,7 @@ const SignUpForm = () => {
               </label>
               <div className="mt-2">
                 <input
-                 className="block w-full rounded-md border border-gray-300 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border border-gray-300 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   id="email"
                   name="email"
                   type="email"
@@ -183,7 +181,7 @@ const SignUpForm = () => {
               </label>
               <div className="mt-2">
                 <input
-                 className="block w-full rounded-md border border-gray-300 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border border-gray-300 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   id="avatar"
                   name="avatar"
                   type="avatar"
@@ -219,7 +217,6 @@ const SignUpForm = () => {
               </div>
               <div>
                 <input
-                  // checked={!formik.values.venueManager}
                   onChange={() => {
                     formik.setFieldValue("venueManager", false);
                   }}
