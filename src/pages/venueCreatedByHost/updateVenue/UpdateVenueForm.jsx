@@ -2,7 +2,6 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
 import { updateVenue } from "./updateVenue.mjs";
-import { BsXCircleFill } from "react-icons/bs";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -23,7 +22,6 @@ const validationSchema = Yup.object().shape({
     .required("Required")
     .positive("Must be positive")
     .integer("Must be an integer"),
-  //media: Yup.string().url("Must be a valid URL"),
   media: Yup.array().of(Yup.string().url("Invalid URL")),
 
   meta: Yup.object().shape({
@@ -57,10 +55,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const UpdateVenueForm = ({ specificVenue, closeModal }) => {
-  // const [updatedVenue, setUpdatedVenue] = useState(null);
   const [mediaArray, setMediaArray] = useState(specificVenue?.media || []);
-  //const [errorMessage, setErrorMessage] = useState(null);
-  // const [successMessage, setSuccessMessage] = useState(null);
 
   const id = specificVenue.id;
 
@@ -136,7 +131,7 @@ const UpdateVenueForm = ({ specificVenue, closeModal }) => {
       } catch (error) {
         toast.error("Booking failed. Please try again later.", {
           position: "bottom-center",
-          autoClose: 2000, // Close toast after 5 seconds
+          autoClose: 2000, 
         });
       }
 
@@ -162,9 +157,7 @@ const UpdateVenueForm = ({ specificVenue, closeModal }) => {
 
   return (
     <div className="container px-6 py-6 border">
-      <h1>Update Venue</h1>
-      {/* {successMessage && <p className="text-green-500">{successMessage}</p>}
-      {errorMessage && <p className="text-red-500">{errorMessage}</p>} */}
+      <h1 className="text-2xl text-center font-semibold mb-10 underline">Update Venue</h1>
       <form className="space-y-6" onSubmit={handleSubmit}>
         <div>
           <label
@@ -457,7 +450,7 @@ const UpdateVenueForm = ({ specificVenue, closeModal }) => {
                 >
                   Add Media
                 </button>
-                {/* <button type="button" onClick={cancelUpdate}>Cancel</button> */}
+              
               </div>
             </div>
           </div>
