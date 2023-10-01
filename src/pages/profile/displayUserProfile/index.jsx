@@ -90,8 +90,8 @@ const DisplayProfile = ({ profile }) => {
             <div
               className={`flex-grow px-4 py-4 cursor-pointer ${
                 activeTab === "bookings"
-                  ? "border-b-4 border-blue-500 bg-red-500 text-white"
-                  : "bg-white text-red-500 hover:bg-red-100 hover:text-red-700"
+                  ? "bg-secondary-lighter text-white"
+                  : "bg-white text-secondary hover:bg-red-100"
               }`}
               onClick={() => setActiveTab("bookings")}
             >
