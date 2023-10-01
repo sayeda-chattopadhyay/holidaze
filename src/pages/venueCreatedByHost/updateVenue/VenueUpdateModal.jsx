@@ -12,7 +12,7 @@ export default function VenueUpdateModal({ specificVenue }) {
 
   return (
     <>
-      <button className="btnMedium" type="button" onClick={() => setShowModal(true)}>
+      <button className="bg-primary text-white font-bold uppercase text-sm px-6 py-3 rounded shadow hover:bg-primary-darker  outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onClick={() => setShowModal(true)}>
         Edit Venue
       </button>
       {showModal && (
