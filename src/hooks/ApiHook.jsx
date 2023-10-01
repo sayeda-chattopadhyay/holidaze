@@ -15,10 +15,9 @@ const ApiHook = (url) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        setIsError(false); 
+        setIsError(false);
         setIsLoading(true);
         const response = await fetch(url);
-     
 
         if (!response.ok) {
           throw new Error("API request failed");
@@ -26,7 +25,6 @@ const ApiHook = (url) => {
         const data = await response.json();
         setData(data);
       } catch (error) {
-        console.log(error);
         setIsError(true);
         setErrorMessage(error);
       } finally {
