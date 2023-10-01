@@ -62,20 +62,7 @@ const VenueDetails = ({ venue }) => {
     return `${day}/${month}/${year}`;
   }
 
-  // Function to render booking details
-  const renderBookingDetails = () => {
-    return bookings && bookings.length > 0 ? (
-      bookings.map((booking, index) => (
-        <div key={index} className="mb-4">
-          <p className="font-semibold">Booking {index + 1}</p>
-          <p>Check-In: {formatDate(booking.dateFrom)}</p>
-          <p>Check-Out: {formatDate(booking.dateTo)}</p>
-        </div>
-      ))
-    ) : (
-      <div>No bookings yet</div>
-    );
-  };
+ 
 
   // Function to render media
   let mediaItems;
@@ -178,12 +165,6 @@ const VenueDetails = ({ venue }) => {
           </div>
         </div>
 
-        <div className="w-full md:w-1/2 px-6 py-4 border border-b-gray-200">
-          <h2 className="font-bold text-xl text-center border-b-4">
-            Booking Details
-          </h2>
-          {renderBookingDetails()}
-        </div>
         <div className="w-full md:w-1/2 px-6 py-4 border border-b-gray-200">
           <h2 className="font-bold text-xl text-center border-b-4">
             Book the Venue
