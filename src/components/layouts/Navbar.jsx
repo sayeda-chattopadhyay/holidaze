@@ -24,11 +24,11 @@ const Navbar = () => {
         <div className="md:flex space-x-6 font-bold hidden">
           <NavLink
             to="/"
-            className="text-white hover:text-yellow-100 hover:underline"
+            className="text-white hover:text-yellow-300 hover:underline"
           >
             Home
           </NavLink>
-          <NavLink to="/venues" className="text-white hover:text-yellow-100 hover:underline">
+          <NavLink to="/venues" className="text-white  hover:text-yellow-300 hover:underline">
             Venues
           </NavLink>
         </div>
