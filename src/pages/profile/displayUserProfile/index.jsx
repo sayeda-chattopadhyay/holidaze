@@ -113,7 +113,9 @@ const DisplayProfile = ({ profile }) => {
                 <BookingVenueCard key={booking.id} booking={booking} />
               ))
             ) : (
-              <p>No bookings yet</p>
+              <p className="text-xl text-center py-10 text-secondary">
+                No bookings yet
+              </p>
             )}
           </div>
         )}
