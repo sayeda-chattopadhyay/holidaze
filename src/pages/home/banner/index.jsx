@@ -15,11 +15,6 @@ const HeroBanner = () => {
         <h1 className="mb-4 text-heading-4xl font-heading font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6x text-right">
           Your Ultimate Destination for Seamless Holiday Adventures!
         </h1>
-        <p className="mb-8 text-lg font-roboto text-gray-300 lg:text-xl sm:px-16 lg:px-48">
-          From grand galas to intimate gatherings, discover your ideal venue
-          with us. Where your event´s story begins - find the perfect venue
-          effortlessly.
-        </p>
         <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
           <NavLink
             to="/venues"
@@ -40,7 +35,6 @@ export default HeroBanner;
 // import { NavLink } from "react-router-dom";
 // import heroImage from "/src/assets/images/hero-image.jpg";
 // const HeroBanner = () => {
- 
 
 //   return (
 //     <section className="relative bg-center bg-no-repeat bg-cover" style={{ backgroundImage: `url(${heroImage})` }}>
