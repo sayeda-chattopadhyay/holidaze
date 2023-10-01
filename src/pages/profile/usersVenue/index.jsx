@@ -27,7 +27,7 @@ function VenueCardCretedByHost({ userVenue }) {
     <>
       <Link
         to={`/venueCreatedByHost/${id}`}
-        className=" border border-red-700 conatainer max-w-xl mx-auto bg-white px-2 py-2 my-10 rounded-lg overflow-hidden shadow-md md:flex md:flex-row md:gap-10 justify-between items-center"
+        className=" conatainer max-w-xl mx-auto bg-white px-2 py-2 my-10 rounded-lg overflow-hidden shadow-md md:flex md:flex-row md:gap-10 justify-between items-center"
       >
         <div className="md:w-1/2">
           <img
