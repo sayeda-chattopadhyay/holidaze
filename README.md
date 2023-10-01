@@ -1,6 +1,6 @@
 # Holidaze
 
-![Homepage Preview](/src/assets/images/logo.png)
+![Homepage Preview](/src/assets/images/holidazeImage.jpg)
 
 ## Table Of Content
 
