@@ -11,7 +11,7 @@ const HeroBanner = () => {
       }}
     >
       <div className="absolute inset-0 bg-black opacity-40"></div>
-      <div className="relative z-10 px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
+      <div className="relative px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
         <h1 className="mb-4 text-heading-4xl font-heading font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6x text-right">
           Your Ultimate Destination for Seamless Holiday Adventures!
         </h1>
