@@ -1,7 +1,5 @@
 import AllVenues from "./AllVenues";
 import Breadcrumb from "../../components/ui/Breadcrumb";
-//import VenuesList from "./VenuesList";
-//import UploadImageForm from "./VenuesList";
 
 const VenuesPage = () => {
   const paths = [
@@ -13,8 +11,6 @@ const VenuesPage = () => {
     <div className="mx-auto mt-40 max-w-7xl">
       <Breadcrumb paths={paths} />
       <AllVenues />
-
-      {/* <VenuesList /> */}
     </div>
   );
 };

@@ -19,7 +19,7 @@ const BookingForm = ({ price, maxGuests }) => {
 
   const { specificVenue } = useSpecificVenue(id);
 
-  console.log("specificVenue: ", specificVenue);
+
 
   const initialValues = {
     dateFrom: null,

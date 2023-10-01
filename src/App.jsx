@@ -1,5 +1,3 @@
-// import "./App.css";
-
 import { Route, Routes } from "react-router-dom";
 // pages
 
@@ -11,7 +9,6 @@ import SpecificVenue from "./pages/specificVenue";
 import ProfilePage from "./pages/profile";
 import ErrorPage from "./pages/notFoundPage";
 import HostSpecificVenue from "./pages/venueCreatedByHost";
-//import BookedVenueCard from "./pages/venueBookedByUser";
 
 // layouts
 
@@ -38,7 +35,6 @@ function App() {
               path="/venueCreatedByHost/:id"
               element={<HostSpecificVenue />}
             />
-            {/* <Route path="/venueBookedByUser/:id" element={<BookedVenueCard />} /> */}
             <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>

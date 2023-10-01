@@ -155,7 +155,7 @@ DisplayProfile.propTypes = {
         guests: PropTypes.number.isRequired,
         venue: PropTypes.shape({
           name: PropTypes.string,
-          // Add other venue properties here if needed
+          
         }),
       })
     ),

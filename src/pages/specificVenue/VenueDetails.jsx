@@ -4,7 +4,7 @@ import { FaUtensils } from "react-icons/fa";
 import { FaPaw } from "react-icons/fa";
 import { FaCar } from "react-icons/fa";
 import { Carousel } from "react-responsive-carousel";
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import BookingForm from "./bookingVenue/BookingForm";
 import { load } from "../../storage/index.mjs";
 import Breadcrumb from "../../components/ui/Breadcrumb";
@@ -52,9 +52,6 @@ const VenueDetails = ({ venue }) => {
       { name: "Venue Details", path: `/venues/${id}` },
     ];
   }
-
-  
- 
 
   // Function to render media
   let mediaItems;

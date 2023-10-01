@@ -3,8 +3,7 @@ import { authFetch } from "../../../helper/authorization";
 
 export async function updateVenue(formData, id) {
   const url = `${VENUES_URL}/${id}`;
-  console.log(url);
-  console.log(formData);
+
   try {
     const response = await authFetch(url, {
       method: "Put",
@@ -19,7 +18,7 @@ export async function updateVenue(formData, id) {
     }
 
     const updatedVenue = await response.json();
-    console.log("New Url", updatedVenue);
+
     return updatedVenue;
   } catch (error) {
     console.log("Register error", error.message);

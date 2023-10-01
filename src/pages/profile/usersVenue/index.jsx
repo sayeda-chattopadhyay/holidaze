@@ -9,7 +9,7 @@ const imageNotAvailable = "image not available";
 function VenueCardCretedByHost({ userVenue }) {
   const { id, name, created, location, maxGuests, media, price } = userVenue;
 
-  console.log("venue Created By User:", userVenue);
+ 
 
   function formatDate(dateString) {
     const date = new Date(dateString);

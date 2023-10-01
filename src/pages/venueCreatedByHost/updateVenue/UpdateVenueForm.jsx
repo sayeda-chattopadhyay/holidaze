@@ -90,7 +90,7 @@ const UpdateVenueForm = ({ specificVenue, closeModal }) => {
     },
 
     onSubmit: async (values) => {
-      console.log("Form submitted with values:", values);
+      
 
       const formData = {
         name: values.name,
@@ -135,7 +135,7 @@ const UpdateVenueForm = ({ specificVenue, closeModal }) => {
         });
       }
 
-      console.log("UpdateformData", formData);
+      
     },
     validationSchema,
   });
