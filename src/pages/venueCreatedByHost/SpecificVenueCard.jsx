@@ -155,7 +155,7 @@ const SpecificVenueCard = ({ specificVenue }) => {
           </div>
           <div className="flex gap-5">
             <VenueUpdateModal specificVenue={specificVenue} />
-            <button onClick={handleDeleteVenue}>Delete</button>
+            <button className="bg-secondary text-white font-bold uppercase text-sm px-6 py-3 rounded shadow hover:bg-secondary-lighter  outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"onClick={handleDeleteVenue}>Delete</button>
           </div>
         </div>
         {/* booking details */}
