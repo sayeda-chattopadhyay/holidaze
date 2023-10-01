@@ -18,7 +18,6 @@ const Navbar = () => {
   };
 
   const handleNavLinkClick = () => {
-    // Close the hamburger menu when a NavLink is clicked
     setIsOpen(false);
   };
 

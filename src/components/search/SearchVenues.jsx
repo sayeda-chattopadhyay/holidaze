@@ -51,4 +51,4 @@ SearchVenues.propTypes = {
 
 export default SearchVenues;
 
-// event.preventDefault() to the form submission should be added
+

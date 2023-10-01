@@ -20,7 +20,7 @@ export function useLogin() {
       };
 
       const response = await fetch(url, userToLoginObject);
-      console.log(response);
+      
 
       if (response.ok) {
         const { accessToken, ...profileDetails } = await response.json();
