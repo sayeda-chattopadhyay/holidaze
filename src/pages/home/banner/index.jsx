@@ -12,7 +12,7 @@ const HeroBanner = () => {
     >
       <div className="absolute inset-0 bg-black opacity-40"></div>
       <div className="relative px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
-        <h1 className="mb-4 text-heading-4xl font-heading font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6x text-right">
+        <h1 className="mb-4 text-heading-4xl font-heading font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6x">
           Your Ultimate Destination for Seamless Holiday Adventures!
         </h1>
         <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
