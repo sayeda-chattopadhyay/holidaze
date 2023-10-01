@@ -1,7 +1,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
-//import { useNavigate } from "react-router-dom";
 import { createVenue } from "./createVenue";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -20,12 +19,10 @@ const validationSchema = Yup.object().shape({
     .min(0, "Must be + characters or more!")
     .positive("Price must be positive")
     .required("Required"),
-  // .integer("Price must be an integer"),
   maxGuests: Yup.number()
     .min(0, "Must be + characters or more!")
     .positive("Must be positive")
     .required("Required"),
-  // .integer("Must be an integer"),
   media: Yup.array().of(Yup.string().url("Invalid URL")),
 
   meta: Yup.object().shape({
@@ -63,7 +60,6 @@ const CreateVenueForm = () => {
 
   const { addVenue } = useVenues();
 
-  console.log("mediaArray:", mediaArray);
 
   const {
     values,
@@ -96,7 +92,7 @@ const CreateVenueForm = () => {
     },
 
     onSubmit: async (values, action) => {
-      console.log("Form submitted with values:", values);
+    
 
       const formData = {
         name: values.name,
