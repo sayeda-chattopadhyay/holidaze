@@ -22,7 +22,6 @@ const Navbar = () => {
     setIsOpen(false);
   };
 
-
   return (
     <nav className="bg-primary py-4 px-8 fixed top-0 left-0 right-0 z-10">
       <div className="flex items-center justify-between">
@@ -34,7 +33,10 @@ const Navbar = () => {
           >
             Home
           </NavLink>
-          <NavLink to="/venues" className="text-white  hover:text-yellow-300 hover:underline">
+          <NavLink
+            to="/venues"
+            className="text-white  hover:text-yellow-300 hover:underline"
+          >
             Venues
           </NavLink>
         </div>
@@ -77,7 +79,7 @@ const Navbar = () => {
             </>
           )}
         </div>
-   {/* hamburger button */}
+        {/* hamburger button */}
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
@@ -87,15 +89,20 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-       {/* hamburger menu */}
+      {/* hamburger menu */}
       {isOpen && (
-        <div className=" flex flex-col gap-4 mt-2 md:hidden">
-          <NavLink to="/" className="border-4 block text-white hover:text-gray-300 mb-2" onClick={handleNavLinkClick}>
+        <div className=" flex flex-col mt-2 md:hidden">
+          <NavLink
+            to="/"
+            className=" text-white hover:text-gray-300 mb-2 inline-block"
+            onClick={handleNavLinkClick}
+          >
             Home
           </NavLink>
           <NavLink
             to="/venues"
-            className=" border-4 block text-white hover:text-gray-300 mb-2" onClick={handleNavLinkClick}
+            className=" text-white hover:text-gray-300 mb-2 inline-block"
+            onClick={handleNavLinkClick}
           >
             Venues
           </NavLink>
@@ -105,13 +112,15 @@ const Navbar = () => {
             <>
               <NavLink
                 to="/logIn"
-                className="inline-block text-white hover:text-gray-300 mb-2 border-2 rounded-full px-3 py-2" onClick={handleNavLinkClick}
+                className="text-primary text-center bg-white rounded-full px-3 py-2 inline-block w-20 mb-4"
+                onClick={handleNavLinkClick}
               >
                 Login
               </NavLink>
               <NavLink
                 to="/signUp"
-                className="text-white hover:text-gray-300 mb-2 border-2 rounded-full px-3 py-2"onClick={handleNavLinkClick}
+                className="text-white border-2 bg-primary rounded-full px-3 py-2 inline-block w-20 mb-4"
+                onClick={handleNavLinkClick}
               >
                 Signup
               </NavLink>
@@ -120,7 +129,8 @@ const Navbar = () => {
             <>
               <NavLink
                 to="/profile"
-                className="text-primary bg-white hover:bg-blue-800 hover:text-white border-2 transition ease-out duration-500 rounded-full px-3 py-2" onClick={handleNavLinkClick}
+                className="text-primary bg-white hover:bg-blue-800 hover:text-white border-2 transition ease-out duration-500 rounded-full px-3 py-2 inline-block w-20 mb-4"
+                onClick={handleNavLinkClick}
               >
                 Profile
               </NavLink>
@@ -129,7 +139,7 @@ const Navbar = () => {
                   handleLogout();
                   navigate("/");
                 }}
-                className="text-white hover:bg-white hover:text-primary border-2 transition ease-out duration-500 rounded-full px-3 py-2"
+                className="text-white hover:bg-white hover:text-primary border-2 transition ease-out duration-500 rounded-full px-3 py-2 inline-block w-20 mb-4"
               >
                 Logout
               </button>
