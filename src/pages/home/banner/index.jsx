@@ -4,7 +4,7 @@ import heroImage from "/src/assets/images/hero-image.jpg";
 const HeroBanner = () => {
   return (
     <section
-      className="bg-center bg-no-repeat bg-cover relative"
+      className="bg-center bg-no-repeat bg-cover relative h-[80vh]"
       style={{
         backgroundImage: `url(${heroImage})`,
         backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -29,6 +29,3 @@ const HeroBanner = () => {
 };
 
 export default HeroBanner;
-
-
-
