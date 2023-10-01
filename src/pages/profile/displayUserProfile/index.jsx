@@ -118,8 +118,8 @@ const DisplayProfile = ({ profile }) => {
           </div>
         )}
         {activeTab === "venues" && (
-          <div className="container mx-auto px-4 py-4  bg-gray-100 rounded-lg shadow-lg mt-10">
-            <h1 className="text-center text-xl md:text-2xl bg-gray-200 py-2 rounded-lg">
+          <div className="container max-w-4xl mx-auto px-4 py-4 bg-gray-200 rounded-lg shadow-lg mt-10">
+            <h1 className="text-center text-xl md:text-2xl bg-white py-4 rounded-lg max-w-xl mx-auto my-4">
               {venues && venues.length > 0
                 ? `All venues created by ${name}`
                 : `Hi ! ${name},  you have not created any venues yet`}
