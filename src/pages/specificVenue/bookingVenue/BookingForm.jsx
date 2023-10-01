@@ -215,7 +215,7 @@ const BookingForm = ({ price, maxGuests }) => {
         <div className="text-center">
           <button
             type="submit"
-            className="bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline hover:bg-blue-600"
+            className="bg-primary text-white font-bold font-heading py-2 px-4 rounded focus:outline-none focus:shadow-outline hover:bg-primary-lighter"
           >
             Book Now
           </button>
