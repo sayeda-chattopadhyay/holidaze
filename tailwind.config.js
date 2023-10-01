@@ -20,6 +20,11 @@ export default {
           darker: "#096d53",
           lighter: "#15eaae",
         },
+        quaternary: {
+          DEFAULT: "#D1E1FF",
+          darker: "",
+          lighter: "#CCDEFF",
+        },
       },
       fontFamily: {
         heading: ["Inter", "serif"],
