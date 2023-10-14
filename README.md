@@ -110,7 +110,7 @@ This project is licensed under a Creative Commons license. It is open for contri
 - BSc in Physical Sciences
 - Several years of experience in banking
 
-<a href="https://stellular-taffy-47ab91.netlify.app">My Portfolio</a>
+<a href="https://endearing-froyo-04825b.netlify.app/">My Portfolio</a>
 
 ## Contact
 
