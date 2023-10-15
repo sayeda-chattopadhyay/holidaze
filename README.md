@@ -22,8 +22,8 @@ Holidaze is a new front end applicaiton for a accomodation booking site created 
 
 The following functionalities are available to the users:
 
-- a user may view a list of venues, search for a specific venue
-- a user may view a calendar with available dates for a venue
+- an user may view a list of venues, search for a specific venue
+- an user may view a calendar with available dates for a venue
 - users with stud.noroff.no email may register
 - users may create a booking at any venue and view their upcoming bookings
 - unregistered user can browse through and see different venues
@@ -110,7 +110,7 @@ This project is licensed under a Creative Commons license. It is open for contri
 - BSc in Physical Sciences
 - Several years of experience in banking
 
-<a href="https://stellular-taffy-47ab91.netlify.app">My Portfolio</a>
+<a href="https://www.sayedachattopadhyay.com">My Portfolio</a>
 
 ## Contact
 
